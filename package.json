@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "process-data": "python3 scripts/process_ibt.py"
   },
   "dependencies": {
     "framer-motion": "^12.27.0",
