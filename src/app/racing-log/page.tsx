@@ -11,6 +11,13 @@ interface DailyBest {
   totalLaps: number;
   bestTime: number;
   bestTimeFormatted: string;
+  medianTime: number | null;
+  medianTimeFormatted: string | null;
+  slowestTime: number | null;
+  slowestTimeFormatted: string | null;
+  range: number | null;
+  rangeFormatted: string | null;
+  consistencyScore: number | null;
   track: string;
 }
 
@@ -20,6 +27,9 @@ interface CarStat {
   totalLaps: number;
   bestTime: number;
   bestTimeFormatted: string;
+  medianTime: number | null;
+  medianTimeFormatted: string | null;
+  consistencyScore: number | null;
 }
 
 // Format date for display
@@ -38,6 +48,24 @@ function calculateDelta(current: number, previous: number) {
   if (Math.abs(delta) < 0.001) return null;
   const sign = delta > 0 ? '+' : '-';
   return `${sign}${Math.abs(delta).toFixed(3)}s`;
+}
+
+// Calculate delta for consistency score (higher is better, so reverse the sign logic)
+function calculateConsistencyDelta(current: number | null, previous: number | null) {
+  if (current === null || previous === null) return null;
+  const delta = current - previous;
+  if (Math.abs(delta) < 1) return null;
+  const sign = delta > 0 ? '+' : ''; // Positive is good for consistency
+  return `${sign}${delta}%`;
+}
+
+// Get color for consistency score
+function getConsistencyColor(score: number | null): string {
+  if (score === null) return 'text-[var(--foreground-muted)]';
+  if (score >= 90) return 'text-[var(--accent-green)]';
+  if (score >= 75) return 'text-[var(--purple-glow)]';
+  if (score >= 50) return 'text-yellow-400';
+  return 'text-[var(--accent-red)]';
 }
 
 // Group daily bests by car
@@ -173,53 +201,109 @@ export default function RacingLogPage() {
                           {carStat.totalSessions} sessions, {carStat.totalLaps} laps
                         </p>
                       </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-6">
                         <div className="text-right">
-                          <div className="text-xs text-[var(--foreground-muted)]">Personal Best</div>
-                          <div className="font-mono text-lg font-bold text-[var(--accent-green)]">
+                          <div className="text-xs text-[var(--foreground-muted)]">Best</div>
+                          <div className="font-mono text-base font-bold text-[var(--accent-green)]">
                             {carStat.bestTimeFormatted}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-xs text-[var(--foreground-muted)]">Median</div>
+                          <div className="font-mono text-base font-semibold text-white">
+                            {carStat.medianTimeFormatted || 'N/A'}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-xs text-[var(--foreground-muted)]">Consistency</div>
+                          <div className={`font-mono text-base font-bold ${getConsistencyColor(carStat.consistencyScore)}`}>
+                            {carStat.consistencyScore !== null ? `${carStat.consistencyScore}%` : 'N/A'}
                           </div>
                         </div>
                       </div>
                     </div>
 
                     {/* Daily Bests for this car */}
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       {carDailyBests.map((day, index) => {
                         const prevDay = index > 0 ? carDailyBests[index - 1] : null;
-                        const delta = prevDay ? calculateDelta(day.bestTime, prevDay.bestTime) : null;
-                        const isImprovement = delta && delta.startsWith('-');
+                        const bestDelta = prevDay ? calculateDelta(day.bestTime, prevDay.bestTime) : null;
+                        const medianDelta = prevDay && day.medianTime && prevDay.medianTime
+                          ? calculateDelta(day.medianTime, prevDay.medianTime)
+                          : null;
+                        const consistencyDelta = calculateConsistencyDelta(day.consistencyScore, prevDay?.consistencyScore ?? null);
+                        const isBestImprovement = bestDelta && bestDelta.startsWith('-');
+                        const isMedianImprovement = medianDelta && medianDelta.startsWith('-');
+                        const isConsistencyImprovement = consistencyDelta && consistencyDelta.startsWith('+');
                         const isPersonalBest = day.bestTime === carStat.bestTime;
 
                         return (
                           <div
                             key={day.date}
-                            className={`p-3 rounded-lg ${isPersonalBest ? 'bg-[var(--accent-green)]/10 border border-[var(--accent-green)]/30' : 'bg-[var(--background-primary)]'}`}
+                            className={`p-4 rounded-lg ${isPersonalBest ? 'bg-[var(--accent-green)]/10 border border-[var(--accent-green)]/30' : 'bg-[var(--background-primary)]'}`}
                           >
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                              <div className="flex items-center gap-4">
-                                <div className="min-w-[100px]">
-                                  <div className="text-sm text-[var(--foreground-muted)]">{formatDate(day.date)}</div>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <span className={`font-mono text-base font-semibold ${isPersonalBest ? 'text-[var(--accent-green)]' : 'text-white'}`}>
+                            {/* Date and lap count header */}
+                            <div className="flex items-center justify-between mb-3">
+                              <div className="text-sm font-medium text-white">{formatDate(day.date)}</div>
+                              <div className="text-xs text-[var(--foreground-muted)]">
+                                {day.sessions} sessions, {day.totalLaps} laps
+                              </div>
+                            </div>
+
+                            {/* Stats grid */}
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                              {/* Best Time */}
+                              <div>
+                                <div className="text-xs text-[var(--foreground-muted)] mb-1">Best</div>
+                                <div className="flex items-center gap-1.5">
+                                  <span className={`font-mono text-sm font-semibold ${isPersonalBest ? 'text-[var(--accent-green)]' : 'text-white'}`}>
                                     {day.bestTimeFormatted}
                                   </span>
                                   {isPersonalBest && (
-                                    <span className="text-xs px-2 py-0.5 rounded bg-[var(--accent-green)]/20 text-[var(--accent-green)]">
+                                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--accent-green)]/20 text-[var(--accent-green)]">
                                       PB
                                     </span>
                                   )}
-                                  {delta && (
-                                    <span className={`text-xs font-mono ${isImprovement ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-                                      {delta}
-                                    </span>
-                                  )}
+                                </div>
+                                {bestDelta && (
+                                  <div className={`text-xs font-mono mt-0.5 ${isBestImprovement ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                                    {bestDelta}
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* Median Time */}
+                              <div>
+                                <div className="text-xs text-[var(--foreground-muted)] mb-1">Median</div>
+                                <div className="font-mono text-sm text-white">
+                                  {day.medianTimeFormatted || 'N/A'}
+                                </div>
+                                {medianDelta && (
+                                  <div className={`text-xs font-mono mt-0.5 ${isMedianImprovement ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                                    {medianDelta}
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* Range */}
+                              <div>
+                                <div className="text-xs text-[var(--foreground-muted)] mb-1">Range</div>
+                                <div className="font-mono text-sm text-white">
+                                  {day.rangeFormatted || 'N/A'}
                                 </div>
                               </div>
-                              <div className="flex items-center gap-4 text-xs text-[var(--foreground-muted)]">
-                                <span>{day.sessions} sessions</span>
-                                <span>{day.totalLaps} laps</span>
+
+                              {/* Consistency */}
+                              <div>
+                                <div className="text-xs text-[var(--foreground-muted)] mb-1">Consistency</div>
+                                <div className={`font-mono text-sm font-semibold ${getConsistencyColor(day.consistencyScore)}`}>
+                                  {day.consistencyScore !== null ? `${day.consistencyScore}%` : 'N/A'}
+                                </div>
+                                {consistencyDelta && (
+                                  <div className={`text-xs font-mono mt-0.5 ${isConsistencyImprovement ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                                    {consistencyDelta}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>

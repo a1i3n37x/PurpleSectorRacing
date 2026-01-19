@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-19T17:48:46.316Z",
+  "generated": "2026-01-19T17:58:16.729Z",
   "track": "Autodromo Nazionale Monza",
   "trackShort": "Monza Full",
   "totalSessions": 56,
@@ -9,55 +9,89 @@
   "carStats": [
     {
       "car": "Super Formula Lights 324",
-      "totalSessions": 29,
+      "totalSessions": 54,
       "totalLaps": 149,
       "bestTime": 101.9094009399414,
-      "bestTimeFormatted": "1:41.909"
+      "bestTimeFormatted": "1:41.909",
+      "medianTime": 104.25440216064453,
+      "medianTimeFormatted": "1:44.254",
+      "consistencyScore": 74
     },
     {
       "car": "Super Formula SF23 - Honda",
       "totalSessions": 1,
       "totalLaps": 0,
       "bestTime": 91.72869873046875,
-      "bestTimeFormatted": "1:31.729"
+      "bestTimeFormatted": "1:31.729",
+      "medianTime": null,
+      "medianTimeFormatted": null,
+      "consistencyScore": null
     }
   ],
   "dailyBests": [
     {
       "date": "2026-01-08",
       "car": "Super Formula Lights 324",
-      "sessions": 5,
+      "sessions": 12,
       "totalLaps": 13,
       "bestTime": 102.39469909667969,
       "bestTimeFormatted": "1:42.395",
-      "track": "Autodromo Nazionale Monza"
+      "track": "Autodromo Nazionale Monza",
+      "medianTime": 104.75370025634766,
+      "medianTimeFormatted": "1:44.754",
+      "slowestTime": 118.25879669189453,
+      "slowestTimeFormatted": "1:58.259",
+      "range": 15.864097595214844,
+      "rangeFormatted": "15.864s",
+      "consistencyScore": 77
     },
     {
       "date": "2026-01-09",
       "car": "Super Formula Lights 324",
-      "sessions": 6,
+      "sessions": 8,
       "totalLaps": 38,
       "bestTime": 102.66079711914062,
       "bestTimeFormatted": "1:42.661",
-      "track": "Autodromo Nazionale Monza"
+      "track": "Autodromo Nazionale Monza",
+      "medianTime": 103.95380020141602,
+      "medianTimeFormatted": "1:43.954",
+      "slowestTime": 117.00700378417969,
+      "slowestTimeFormatted": "1:57.007",
+      "range": 14.346206665039062,
+      "rangeFormatted": "14.346s",
+      "consistencyScore": 82
     },
     {
       "date": "2026-01-11",
       "car": "Super Formula Lights 324",
-      "sessions": 4,
+      "sessions": 9,
       "totalLaps": 23,
       "bestTime": 102.38719940185547,
       "bestTimeFormatted": "1:42.387",
-      "track": "Autodromo Nazionale Monza"
+      "track": "Autodromo Nazionale Monza",
+      "medianTime": 106.12149810791016,
+      "medianTimeFormatted": "1:46.121",
+      "slowestTime": 117.57839965820312,
+      "slowestTimeFormatted": "1:57.578",
+      "range": 15.191200256347656,
+      "rangeFormatted": "15.191s",
+      "consistencyScore": 81
     },
     {
       "date": "2026-01-12",
       "car": "Super Formula Lights 324",
-      "sessions": 5,
+      "sessions": 8,
       "totalLaps": 23,
       "bestTime": 102.55509948730469,
       "bestTimeFormatted": "1:42.555",
-      "track": "Autodromo Nazionale Monza"
+      "track": "Autodromo Nazionale Monza",
+      "medianTime": 104.55680084228516,
+      "medianTimeFormatted": "1:44.557",
+      "slowestTime": 150.31520080566406,
+      "slowestTimeFormatted": "2:30.315",
+      "range": 47.760101318359375,
+      "rangeFormatted": "47.760s",
+      "consistencyScore": 53
     },
     {
       "date": "2026-01-13",
@@ -66,16 +100,30 @@
       "totalLaps": 19,
       "bestTime": 102.01940155029297,
       "bestTimeFormatted": "1:42.019",
-      "track": "Autodromo Nazionale Monza"
+      "track": "Autodromo Nazionale Monza",
+      "medianTime": 102.74970245361328,
+      "medianTimeFormatted": "1:42.750",
+      "slowestTime": 117.27680206298828,
+      "slowestTimeFormatted": "1:57.277",
+      "range": 15.257400512695312,
+      "rangeFormatted": "15.257s",
+      "consistencyScore": 84
     },
     {
       "date": "2026-01-14",
       "car": "Super Formula Lights 324",
-      "sessions": 6,
+      "sessions": 14,
       "totalLaps": 28,
       "bestTime": 102.85710144042969,
       "bestTimeFormatted": "1:42.857",
-      "track": "Autodromo Nazionale Monza"
+      "track": "Autodromo Nazionale Monza",
+      "medianTime": 104.93030166625977,
+      "medianTimeFormatted": "1:44.930",
+      "slowestTime": 114.0376968383789,
+      "slowestTimeFormatted": "1:54.038",
+      "range": 11.180595397949219,
+      "rangeFormatted": "11.181s",
+      "consistencyScore": 86
     },
     {
       "date": "2026-01-15",
@@ -84,7 +132,14 @@
       "totalLaps": 5,
       "bestTime": 101.9094009399414,
       "bestTimeFormatted": "1:41.909",
-      "track": "Autodromo Nazionale Monza"
+      "track": "Autodromo Nazionale Monza",
+      "medianTime": 102.90740203857422,
+      "medianTimeFormatted": "1:42.907",
+      "slowestTime": 104.62220001220703,
+      "slowestTimeFormatted": "1:44.622",
+      "range": 2.712799072265625,
+      "rangeFormatted": "2.713s",
+      "consistencyScore": 96
     },
     {
       "date": "2026-01-15",
@@ -93,7 +148,14 @@
       "totalLaps": 0,
       "bestTime": 91.72869873046875,
       "bestTimeFormatted": "1:31.729",
-      "track": "Autodromo Nazionale Monza"
+      "track": "Autodromo Nazionale Monza",
+      "medianTime": null,
+      "medianTimeFormatted": null,
+      "slowestTime": null,
+      "slowestTimeFormatted": null,
+      "range": null,
+      "rangeFormatted": null,
+      "consistencyScore": null
     }
   ]
 }

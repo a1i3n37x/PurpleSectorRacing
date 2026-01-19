@@ -84,6 +84,37 @@ function formatLapTime(seconds) {
   return `${mins}:${secs.padStart(6, '0')}`;
 }
 
+// Statistics helper functions
+function calculateMedian(values) {
+  if (!values || values.length === 0) return null;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 !== 0
+    ? sorted[mid]
+    : (sorted[mid - 1] + sorted[mid]) / 2;
+}
+
+function calculateStdDev(values) {
+  if (!values || values.length < 2) return null;
+  const mean = values.reduce((a, b) => a + b, 0) / values.length;
+  const squareDiffs = values.map(v => Math.pow(v - mean, 2));
+  return Math.sqrt(squareDiffs.reduce((a, b) => a + b, 0) / values.length);
+}
+
+function calculateConsistencyScore(values) {
+  // Consistency score: 0-100% based on coefficient of variation
+  // Lower CV = higher consistency
+  if (!values || values.length < 2) return null;
+  const mean = values.reduce((a, b) => a + b, 0) / values.length;
+  const stdDev = calculateStdDev(values);
+  if (!stdDev || mean === 0) return 100;
+
+  const cv = stdDev / mean; // Coefficient of variation
+  // Scale: CV of 0 = 100%, CV of 0.05 (5%) = 75%, CV of 0.10 = 50%, CV of 0.20+ = 0%
+  const score = Math.max(0, Math.min(100, 100 * (1 - cv * 5)));
+  return Math.round(score);
+}
+
 function processIbtFile(filePath) {
   const buffer = fs.readFileSync(filePath);
   const fileName = path.basename(filePath);
@@ -213,12 +244,12 @@ console.log(`Total sessions: ${sessions.length}`);
 console.log(`Total laps recorded: ${totalLaps}`);
 console.log(`Best overall lap: ${formatLapTime(bestOverallTime)} (${bestOverallFile})`);
 
-// Group by date AND car for daily best times per car
+// Group by date AND car for daily stats per car
 const byDateAndCar = {};
 const carStats = {};
 
 sessions.forEach(s => {
-  if (s.date && s.bestLapTime && s.car) {
+  if (s.date && s.car) {
     const key = `${s.date}|${s.car}`;
 
     // Track per date+car
@@ -228,6 +259,7 @@ sessions.forEach(s => {
         car: s.car,
         sessions: 0,
         totalLaps: 0,
+        allLapTimes: [], // Collect all lap times for stats
         bestTime: Infinity,
         bestTimeFormatted: null,
         track: s.track
@@ -235,7 +267,17 @@ sessions.forEach(s => {
     }
     byDateAndCar[key].sessions++;
     byDateAndCar[key].totalLaps += s.totalLaps;
-    if (s.bestLapTime < byDateAndCar[key].bestTime) {
+
+    // Collect all lap times from this session
+    if (s.laps && s.laps.length > 0) {
+      s.laps.forEach(lap => {
+        if (lap.timeSeconds > 0 && lap.timeSeconds < 600) {
+          byDateAndCar[key].allLapTimes.push(lap.timeSeconds);
+        }
+      });
+    }
+
+    if (s.bestLapTime && s.bestLapTime < byDateAndCar[key].bestTime) {
       byDateAndCar[key].bestTime = s.bestLapTime;
       byDateAndCar[key].bestTimeFormatted = s.bestLapTimeFormatted;
     }
@@ -246,17 +288,67 @@ sessions.forEach(s => {
         car: s.car,
         totalSessions: 0,
         totalLaps: 0,
+        allLapTimes: [],
         bestTime: Infinity,
         bestTimeFormatted: null
       };
     }
     carStats[s.car].totalSessions++;
     carStats[s.car].totalLaps += s.totalLaps;
-    if (s.bestLapTime < carStats[s.car].bestTime) {
+
+    // Collect all lap times for car-wide stats
+    if (s.laps && s.laps.length > 0) {
+      s.laps.forEach(lap => {
+        if (lap.timeSeconds > 0 && lap.timeSeconds < 600) {
+          carStats[s.car].allLapTimes.push(lap.timeSeconds);
+        }
+      });
+    }
+
+    if (s.bestLapTime && s.bestLapTime < carStats[s.car].bestTime) {
       carStats[s.car].bestTime = s.bestLapTime;
       carStats[s.car].bestTimeFormatted = s.bestLapTimeFormatted;
     }
   }
+});
+
+// Calculate consistency stats for each date+car combo
+Object.values(byDateAndCar).forEach(entry => {
+  const times = entry.allLapTimes;
+  if (times.length > 0) {
+    entry.medianTime = calculateMedian(times);
+    entry.medianTimeFormatted = formatLapTime(entry.medianTime);
+    entry.slowestTime = Math.max(...times);
+    entry.slowestTimeFormatted = formatLapTime(entry.slowestTime);
+    entry.range = entry.slowestTime - entry.bestTime;
+    entry.rangeFormatted = entry.range.toFixed(3) + 's';
+    entry.consistencyScore = calculateConsistencyScore(times);
+  } else {
+    entry.medianTime = null;
+    entry.medianTimeFormatted = null;
+    entry.slowestTime = null;
+    entry.slowestTimeFormatted = null;
+    entry.range = null;
+    entry.rangeFormatted = null;
+    entry.consistencyScore = null;
+  }
+  // Remove raw lap times from output to keep JSON smaller
+  delete entry.allLapTimes;
+});
+
+// Calculate consistency stats for each car
+Object.values(carStats).forEach(entry => {
+  const times = entry.allLapTimes;
+  if (times.length > 0) {
+    entry.medianTime = calculateMedian(times);
+    entry.medianTimeFormatted = formatLapTime(entry.medianTime);
+    entry.consistencyScore = calculateConsistencyScore(times);
+  } else {
+    entry.medianTime = null;
+    entry.medianTimeFormatted = null;
+    entry.consistencyScore = null;
+  }
+  delete entry.allLapTimes;
 });
 
 // Convert to array and sort by date, then car name
@@ -271,12 +363,15 @@ const carStatsArray = Object.values(carStats).sort((a, b) => b.totalSessions - a
 
 console.log('\n--- Car Statistics ---');
 carStatsArray.forEach(c => {
-  console.log(`${c.car}: ${c.bestTimeFormatted} best, ${c.totalSessions} sessions, ${c.totalLaps} laps`);
+  const consistency = c.consistencyScore !== null ? `${c.consistencyScore}%` : 'N/A';
+  console.log(`${c.car}: ${c.bestTimeFormatted} best, median ${c.medianTimeFormatted}, ${consistency} consistency, ${c.totalLaps} laps`);
 });
 
-console.log('\n--- Daily Best Lap Times (by car) ---');
+console.log('\n--- Daily Stats (by car) ---');
 dailyBests.forEach(d => {
-  console.log(`${d.date} [${d.car}]: ${d.bestTimeFormatted} (${d.sessions} sessions, ${d.totalLaps} laps)`);
+  const consistency = d.consistencyScore !== null ? `${d.consistencyScore}%` : 'N/A';
+  const range = d.rangeFormatted || 'N/A';
+  console.log(`${d.date} [${d.car}]: Best ${d.bestTimeFormatted}, Median ${d.medianTimeFormatted}, Range ${range}, Consistency ${consistency} (${d.totalLaps} laps)`);
 });
 
 // Save data
