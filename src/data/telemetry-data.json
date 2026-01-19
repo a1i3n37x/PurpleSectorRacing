@@ -1,0 +1,1617 @@
+{
+  "generated": "2026-01-19T15:34:51.555Z",
+  "totalSessions": 56,
+  "totalLaps": 149,
+  "bestOverallTime": 91.72869873046875,
+  "bestOverallTimeFormatted": "1:31.729",
+  "dailyBests": [
+    {
+      "date": "2026-01-08",
+      "sessions": 5,
+      "totalLaps": 13,
+      "bestTime": 102.39469909667969,
+      "bestTimeFormatted": "1:42.395",
+      "track": "Autodromo Nazionale Monza",
+      "car": "Super Formula Lights 324"
+    },
+    {
+      "date": "2026-01-09",
+      "sessions": 6,
+      "totalLaps": 38,
+      "bestTime": 102.66079711914062,
+      "bestTimeFormatted": "1:42.661",
+      "track": "Autodromo Nazionale Monza",
+      "car": "Super Formula Lights 324"
+    },
+    {
+      "date": "2026-01-11",
+      "sessions": 4,
+      "totalLaps": 23,
+      "bestTime": 102.38719940185547,
+      "bestTimeFormatted": "1:42.387",
+      "track": "Autodromo Nazionale Monza",
+      "car": "Super Formula Lights 324"
+    },
+    {
+      "date": "2026-01-12",
+      "sessions": 5,
+      "totalLaps": 23,
+      "bestTime": 102.55509948730469,
+      "bestTimeFormatted": "1:42.555",
+      "track": "Autodromo Nazionale Monza",
+      "car": "Super Formula Lights 324"
+    },
+    {
+      "date": "2026-01-13",
+      "sessions": 2,
+      "totalLaps": 19,
+      "bestTime": 102.01940155029297,
+      "bestTimeFormatted": "1:42.019",
+      "track": "Autodromo Nazionale Monza",
+      "car": "Super Formula Lights 324"
+    },
+    {
+      "date": "2026-01-14",
+      "sessions": 6,
+      "totalLaps": 28,
+      "bestTime": 102.85710144042969,
+      "bestTimeFormatted": "1:42.857",
+      "track": "Autodromo Nazionale Monza",
+      "car": "Super Formula Lights 324"
+    },
+    {
+      "date": "2026-01-15",
+      "sessions": 2,
+      "totalLaps": 5,
+      "bestTime": 91.72869873046875,
+      "bestTimeFormatted": "1:31.729",
+      "track": "Autodromo Nazionale Monza",
+      "car": "Super Formula Lights 324"
+    }
+  ],
+  "sessions": [
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-03-42.ibt",
+      "date": "2026-01-08",
+      "time": "22:03:42",
+      "datetime": "2026-01-09T05:03:42.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 115.0896987915039,
+          "timeFormatted": "1:55.090"
+        }
+      ],
+      "bestLapTime": 115.0896987915039,
+      "bestLapTimeFormatted": "1:55.090",
+      "totalLaps": 1
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-08-17.ibt",
+      "date": "2026-01-08",
+      "time": "22:08:17",
+      "datetime": "2026-01-09T05:08:17.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-08-44.ibt",
+      "date": "2026-01-08",
+      "time": "22:08:44",
+      "datetime": "2026-01-09T05:08:44.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-11-26.ibt",
+      "date": "2026-01-08",
+      "time": "22:11:26",
+      "datetime": "2026-01-09T05:11:26.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 111.84030151367188,
+          "timeFormatted": "1:51.840"
+        }
+      ],
+      "bestLapTime": 111.84030151367188,
+      "bestLapTimeFormatted": "1:51.840",
+      "totalLaps": 1
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-16-15.ibt",
+      "date": "2026-01-08",
+      "time": "22:16:15",
+      "datetime": "2026-01-09T05:16:15.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-17-42.ibt",
+      "date": "2026-01-08",
+      "time": "22:17:42",
+      "datetime": "2026-01-09T05:17:42.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-18-12.ibt",
+      "date": "2026-01-08",
+      "time": "22:18:12",
+      "datetime": "2026-01-09T05:18:12.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-22-10.ibt",
+      "date": "2026-01-08",
+      "time": "22:22:10",
+      "datetime": "2026-01-09T05:22:10.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-23-27.ibt",
+      "date": "2026-01-08",
+      "time": "22:23:27",
+      "datetime": "2026-01-09T05:23:27.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 110.29239654541016,
+          "timeFormatted": "1:50.292"
+        }
+      ],
+      "bestLapTime": 110.29239654541016,
+      "bestLapTimeFormatted": "1:50.292",
+      "totalLaps": 1
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-28-34.ibt",
+      "date": "2026-01-08",
+      "time": "22:28:34",
+      "datetime": "2026-01-09T05:28:34.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-31-43.ibt",
+      "date": "2026-01-08",
+      "time": "22:31:43",
+      "datetime": "2026-01-09T05:31:43.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 118.25879669189453,
+          "timeFormatted": "1:58.259"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 106.18299865722656,
+          "timeFormatted": "1:46.183"
+        }
+      ],
+      "bestLapTime": 106.18299865722656,
+      "bestLapTimeFormatted": "1:46.183",
+      "totalLaps": 2
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-08 22-40-32.ibt",
+      "date": "2026-01-08",
+      "time": "22:40:32",
+      "datetime": "2026-01-09T05:40:32.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 105.1449966430664,
+          "timeFormatted": "1:45.145"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 104.75370025634766,
+          "timeFormatted": "1:44.754"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 103.75160217285156,
+          "timeFormatted": "1:43.752"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 103.56199645996094,
+          "timeFormatted": "1:43.562"
+        },
+        {
+          "lapNumber": 10,
+          "timeSeconds": 103.1958999633789,
+          "timeFormatted": "1:43.196"
+        },
+        {
+          "lapNumber": 34,
+          "timeSeconds": 103.0115966796875,
+          "timeFormatted": "1:43.012"
+        },
+        {
+          "lapNumber": 36,
+          "timeSeconds": 103.16349792480469,
+          "timeFormatted": "1:43.163"
+        },
+        {
+          "lapNumber": 38,
+          "timeSeconds": 102.9906005859375,
+          "timeFormatted": "1:42.991"
+        }
+      ],
+      "bestLapTime": 102.39469909667969,
+      "bestLapTimeFormatted": "1:42.395",
+      "totalLaps": 8
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-09 11-29-39.ibt",
+      "date": "2026-01-09",
+      "time": "11:29:39",
+      "datetime": "2026-01-09T18:29:39.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 116.33390045166016,
+          "timeFormatted": "1:56.334"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 104.09880065917969,
+          "timeFormatted": "1:44.099"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 103.17620086669922,
+          "timeFormatted": "1:43.176"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 103.5790023803711,
+          "timeFormatted": "1:43.579"
+        },
+        {
+          "lapNumber": 0,
+          "timeSeconds": 103.5790023803711,
+          "timeFormatted": "1:43.579"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 103.5790023803711,
+          "timeFormatted": "1:43.579"
+        },
+        {
+          "lapNumber": 7,
+          "timeSeconds": 103.82679748535156,
+          "timeFormatted": "1:43.827"
+        },
+        {
+          "lapNumber": 8,
+          "timeSeconds": 103.85449981689453,
+          "timeFormatted": "1:43.854"
+        },
+        {
+          "lapNumber": 10,
+          "timeSeconds": 103.78019714355469,
+          "timeFormatted": "1:43.780"
+        },
+        {
+          "lapNumber": 18,
+          "timeSeconds": 102.85749816894531,
+          "timeFormatted": "1:42.857"
+        },
+        {
+          "lapNumber": 25,
+          "timeSeconds": 103.060302734375,
+          "timeFormatted": "1:43.060"
+        },
+        {
+          "lapNumber": 28,
+          "timeSeconds": 102.80819702148438,
+          "timeFormatted": "1:42.808"
+        },
+        {
+          "lapNumber": 36,
+          "timeSeconds": 102.92780303955078,
+          "timeFormatted": "1:42.928"
+        },
+        {
+          "lapNumber": 57,
+          "timeSeconds": 102.88880157470703,
+          "timeFormatted": "1:42.889"
+        },
+        {
+          "lapNumber": 61,
+          "timeSeconds": 103.04660034179688,
+          "timeFormatted": "1:43.047"
+        },
+        {
+          "lapNumber": 80,
+          "timeSeconds": 102.73760223388672,
+          "timeFormatted": "1:42.738"
+        },
+        {
+          "lapNumber": 81,
+          "timeSeconds": 102.91320037841797,
+          "timeFormatted": "1:42.913"
+        }
+      ],
+      "bestLapTime": 102.73760223388672,
+      "bestLapTimeFormatted": "1:42.738",
+      "totalLaps": 17
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-09 13-39-17.ibt",
+      "date": "2026-01-09",
+      "time": "13:39:17",
+      "datetime": "2026-01-09T20:39:17.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 111.56069946289062,
+          "timeFormatted": "1:51.561"
+        }
+      ],
+      "bestLapTime": 105.24189758300781,
+      "bestLapTimeFormatted": "1:45.242",
+      "totalLaps": 1
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-09 13-44-06.ibt",
+      "date": "2026-01-09",
+      "time": "13:44:06",
+      "datetime": "2026-01-09T20:44:06.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 112.01950073242188,
+          "timeFormatted": "1:52.020"
+        }
+      ],
+      "bestLapTime": 104.96710205078125,
+      "bestLapTimeFormatted": "1:44.967",
+      "totalLaps": 1
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-09 13-48-59.ibt",
+      "date": "2026-01-09",
+      "time": "13:48:59",
+      "datetime": "2026-01-09T20:48:59.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 112.4636001586914,
+          "timeFormatted": "1:52.464"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 105.18659973144531,
+          "timeFormatted": "1:45.187"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 106.02780151367188,
+          "timeFormatted": "1:46.028"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 104.24369812011719,
+          "timeFormatted": "1:44.244"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 109.27269744873047,
+          "timeFormatted": "1:49.273"
+        }
+      ],
+      "bestLapTime": 104.24369812011719,
+      "bestLapTimeFormatted": "1:44.244",
+      "totalLaps": 5
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-09 14-00-51.ibt",
+      "date": "2026-01-09",
+      "time": "14:00:51",
+      "datetime": "2026-01-09T21:00:51.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-09 14-02-13.ibt",
+      "date": "2026-01-09",
+      "time": "14:02:13",
+      "datetime": "2026-01-09T21:02:13.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 117.00700378417969,
+          "timeFormatted": "1:57.007"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 105.97200012207031,
+          "timeFormatted": "1:45.972"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 110.0718994140625,
+          "timeFormatted": "1:50.072"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 108.23030090332031,
+          "timeFormatted": "1:48.230"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 105.77110290527344,
+          "timeFormatted": "1:45.771"
+        },
+        {
+          "lapNumber": 7,
+          "timeSeconds": 106.90560150146484,
+          "timeFormatted": "1:46.906"
+        },
+        {
+          "lapNumber": 8,
+          "timeSeconds": 107.58450317382812,
+          "timeFormatted": "1:47.585"
+        },
+        {
+          "lapNumber": 9,
+          "timeSeconds": 107.04740142822266,
+          "timeFormatted": "1:47.047"
+        },
+        {
+          "lapNumber": 10,
+          "timeSeconds": 104.72010040283203,
+          "timeFormatted": "1:44.720"
+        }
+      ],
+      "bestLapTime": 104.72010040283203,
+      "bestLapTimeFormatted": "1:44.720",
+      "totalLaps": 9
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-09 14-43-46.ibt",
+      "date": "2026-01-09",
+      "time": "14:43:46",
+      "datetime": "2026-01-09T21:43:46.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 104.0531005859375,
+          "timeFormatted": "1:44.053"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 103.57599639892578,
+          "timeFormatted": "1:43.576"
+        },
+        {
+          "lapNumber": 58,
+          "timeSeconds": 102.77980041503906,
+          "timeFormatted": "1:42.780"
+        },
+        {
+          "lapNumber": 64,
+          "timeSeconds": 102.66079711914062,
+          "timeFormatted": "1:42.661"
+        },
+        {
+          "lapNumber": 74,
+          "timeSeconds": 103.0740966796875,
+          "timeFormatted": "1:43.074"
+        }
+      ],
+      "bestLapTime": 102.66079711914062,
+      "bestLapTimeFormatted": "1:42.661",
+      "totalLaps": 5
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-09 17-06-22.ibt",
+      "date": "2026-01-09",
+      "time": "17:06:22",
+      "datetime": "2026-01-10T00:06:22.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-11 18-30-01.ibt",
+      "date": "2026-01-11",
+      "time": "18:30:01",
+      "datetime": "2026-01-12T01:30:01.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 117.57839965820312,
+          "timeFormatted": "1:57.578"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 113.93280029296875,
+          "timeFormatted": "1:53.933"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 104.9990005493164,
+          "timeFormatted": "1:44.999"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 104.79070281982422,
+          "timeFormatted": "1:44.791"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 103.4458999633789,
+          "timeFormatted": "1:43.446"
+        },
+        {
+          "lapNumber": 11,
+          "timeSeconds": 102.63330078125,
+          "timeFormatted": "1:42.633"
+        },
+        {
+          "lapNumber": 12,
+          "timeSeconds": 102.47679901123047,
+          "timeFormatted": "1:42.477"
+        },
+        {
+          "lapNumber": 46,
+          "timeSeconds": 102.41300201416016,
+          "timeFormatted": "1:42.413"
+        },
+        {
+          "lapNumber": 72,
+          "timeSeconds": 102.94879913330078,
+          "timeFormatted": "1:42.949"
+        },
+        {
+          "lapNumber": 80,
+          "timeSeconds": 102.38719940185547,
+          "timeFormatted": "1:42.387"
+        }
+      ],
+      "bestLapTime": 102.38719940185547,
+      "bestLapTimeFormatted": "1:42.387",
+      "totalLaps": 10
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-11 23-11-41.ibt",
+      "date": "2026-01-11",
+      "time": "23:11:41",
+      "datetime": "2026-01-12T06:11:41.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-11 23-14-31.ibt",
+      "date": "2026-01-11",
+      "time": "23:14:31",
+      "datetime": "2026-01-12T06:14:31.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 113.24230194091797,
+          "timeFormatted": "1:53.242"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 106.12149810791016,
+          "timeFormatted": "1:46.121"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 106.41010284423828,
+          "timeFormatted": "1:46.410"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 106.59030151367188,
+          "timeFormatted": "1:46.590"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 105.20449829101562,
+          "timeFormatted": "1:45.204"
+        },
+        {
+          "lapNumber": 7,
+          "timeSeconds": 104.51470184326172,
+          "timeFormatted": "1:44.515"
+        },
+        {
+          "lapNumber": 8,
+          "timeSeconds": 106.78359985351562,
+          "timeFormatted": "1:46.784"
+        }
+      ],
+      "bestLapTime": 104.51470184326172,
+      "bestLapTimeFormatted": "1:44.515",
+      "totalLaps": 7
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-11 23-29-32.ibt",
+      "date": "2026-01-11",
+      "time": "23:29:32",
+      "datetime": "2026-01-12T06:29:32.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-11 23-31-13.ibt",
+      "date": "2026-01-11",
+      "time": "23:31:13",
+      "datetime": "2026-01-12T06:31:13.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 111.97119903564453,
+          "timeFormatted": "1:51.971"
+        }
+      ],
+      "bestLapTime": 106.57319641113281,
+      "bestLapTimeFormatted": "1:46.573",
+      "totalLaps": 1
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-11 23-39-13.ibt",
+      "date": "2026-01-11",
+      "time": "23:39:13",
+      "datetime": "2026-01-12T06:39:13.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-11 23-40-45.ibt",
+      "date": "2026-01-11",
+      "time": "23:40:45",
+      "datetime": "2026-01-12T06:40:45.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-11 23-44-03.ibt",
+      "date": "2026-01-11",
+      "time": "23:44:03",
+      "datetime": "2026-01-12T06:44:03.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-11 23-44-59.ibt",
+      "date": "2026-01-11",
+      "time": "23:44:59",
+      "datetime": "2026-01-12T06:44:59.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 111.99520111083984,
+          "timeFormatted": "1:51.995"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 106.09429931640625,
+          "timeFormatted": "1:46.094"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 107.37039947509766,
+          "timeFormatted": "1:47.370"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 106.52670288085938,
+          "timeFormatted": "1:46.527"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 107.29560089111328,
+          "timeFormatted": "1:47.296"
+        }
+      ],
+      "bestLapTime": 105.61869812011719,
+      "bestLapTimeFormatted": "1:45.619",
+      "totalLaps": 5
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-12 00-02-31.ibt",
+      "date": "2026-01-12",
+      "time": "00:02:31",
+      "datetime": "2026-01-12T07:02:31.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 111.87870025634766,
+          "timeFormatted": "1:51.879"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 106.79049682617188,
+          "timeFormatted": "1:46.790"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 106.6156997680664,
+          "timeFormatted": "1:46.616"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 106.02519989013672,
+          "timeFormatted": "1:46.025"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 104.25440216064453,
+          "timeFormatted": "1:44.254"
+        },
+        {
+          "lapNumber": 7,
+          "timeSeconds": 104.75199890136719,
+          "timeFormatted": "1:44.752"
+        },
+        {
+          "lapNumber": 8,
+          "timeSeconds": 104.08570098876953,
+          "timeFormatted": "1:44.086"
+        },
+        {
+          "lapNumber": 9,
+          "timeSeconds": 104.92949676513672,
+          "timeFormatted": "1:44.929"
+        },
+        {
+          "lapNumber": 10,
+          "timeSeconds": 104.55680084228516,
+          "timeFormatted": "1:44.557"
+        }
+      ],
+      "bestLapTime": 104.08570098876953,
+      "bestLapTimeFormatted": "1:44.086",
+      "totalLaps": 9
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-12 00-21-23.ibt",
+      "date": "2026-01-12",
+      "time": "00:21:23",
+      "datetime": "2026-01-12T07:21:23.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-12 00-24-44.ibt",
+      "date": "2026-01-12",
+      "time": "00:24:44",
+      "datetime": "2026-01-12T07:24:44.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-12 00-49-01.ibt",
+      "date": "2026-01-12",
+      "time": "00:49:01",
+      "datetime": "2026-01-12T07:49:01.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 3,
+          "timeSeconds": 103.99410247802734,
+          "timeFormatted": "1:43.994"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 103.33260345458984,
+          "timeFormatted": "1:43.333"
+        },
+        {
+          "lapNumber": 8,
+          "timeSeconds": 102.55509948730469,
+          "timeFormatted": "1:42.555"
+        },
+        {
+          "lapNumber": 11,
+          "timeSeconds": 102.77020263671875,
+          "timeFormatted": "1:42.770"
+        },
+        {
+          "lapNumber": 22,
+          "timeSeconds": 102.8385009765625,
+          "timeFormatted": "1:42.839"
+        },
+        {
+          "lapNumber": 24,
+          "timeSeconds": 150.31520080566406,
+          "timeFormatted": "2:30.315"
+        },
+        {
+          "lapNumber": 30,
+          "timeSeconds": 122.01409912109375,
+          "timeFormatted": "2:02.014"
+        },
+        {
+          "lapNumber": 31,
+          "timeSeconds": 107.27410125732422,
+          "timeFormatted": "1:47.274"
+        }
+      ],
+      "bestLapTime": 102.55509948730469,
+      "bestLapTimeFormatted": "1:42.555",
+      "totalLaps": 8
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-12 01-30-59.ibt",
+      "date": "2026-01-12",
+      "time": "01:30:59",
+      "datetime": "2026-01-12T08:30:59.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 35,
+          "timeSeconds": 103.48380279541016,
+          "timeFormatted": "1:43.484"
+        },
+        {
+          "lapNumber": 38,
+          "timeSeconds": 104.11190032958984,
+          "timeFormatted": "1:44.112"
+        }
+      ],
+      "bestLapTime": 102.55509948730469,
+      "bestLapTimeFormatted": "1:42.555",
+      "totalLaps": 2
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-12 07-19-32.ibt",
+      "date": "2026-01-12",
+      "time": "07:19:32",
+      "datetime": "2026-01-12T14:19:32.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 119.29889678955078,
+          "timeFormatted": "1:59.299"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 103.49250030517578,
+          "timeFormatted": "1:43.493"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 102.65049743652344,
+          "timeFormatted": "1:42.650"
+        }
+      ],
+      "bestLapTime": 102.65049743652344,
+      "bestLapTimeFormatted": "1:42.650",
+      "totalLaps": 3
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-12 21-49-56.ibt",
+      "date": "2026-01-12",
+      "time": "21:49:56",
+      "datetime": "2026-01-13T04:49:56.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-12 21-52-27.ibt",
+      "date": "2026-01-12",
+      "time": "21:52:27",
+      "datetime": "2026-01-13T04:52:27.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 6,
+          "timeSeconds": 109.29989624023438,
+          "timeFormatted": "1:49.300"
+        }
+      ],
+      "bestLapTime": 109.29989624023438,
+      "bestLapTimeFormatted": "1:49.300",
+      "totalLaps": 1
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-13 07-39-31.ibt",
+      "date": "2026-01-13",
+      "time": "07:39:31",
+      "datetime": "2026-01-13T14:39:31.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 117.27680206298828,
+          "timeFormatted": "1:57.277"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 104.20220184326172,
+          "timeFormatted": "1:44.202"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 103.23030090332031,
+          "timeFormatted": "1:43.230"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 103.38279724121094,
+          "timeFormatted": "1:43.383"
+        },
+        {
+          "lapNumber": 15,
+          "timeSeconds": 102.74970245361328,
+          "timeFormatted": "1:42.750"
+        }
+      ],
+      "bestLapTime": 102.74970245361328,
+      "bestLapTimeFormatted": "1:42.750",
+      "totalLaps": 5
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-13 22-43-14.ibt",
+      "date": "2026-01-13",
+      "time": "22:43:14",
+      "datetime": "2026-01-14T05:43:14.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 103.33699798583984,
+          "timeFormatted": "1:43.337"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 104.61710357666016,
+          "timeFormatted": "1:44.617"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 102.64420318603516,
+          "timeFormatted": "1:42.644"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 103.50650024414062,
+          "timeFormatted": "1:43.507"
+        },
+        {
+          "lapNumber": 9,
+          "timeSeconds": 102.95210266113281,
+          "timeFormatted": "1:42.952"
+        },
+        {
+          "lapNumber": 22,
+          "timeSeconds": 102.32869720458984,
+          "timeFormatted": "1:42.329"
+        },
+        {
+          "lapNumber": 39,
+          "timeSeconds": 102.30339813232422,
+          "timeFormatted": "1:42.303"
+        },
+        {
+          "lapNumber": 42,
+          "timeSeconds": 102.42620086669922,
+          "timeFormatted": "1:42.426"
+        },
+        {
+          "lapNumber": 56,
+          "timeSeconds": 102.37999725341797,
+          "timeFormatted": "1:42.380"
+        },
+        {
+          "lapNumber": 60,
+          "timeSeconds": 102.46990203857422,
+          "timeFormatted": "1:42.470"
+        },
+        {
+          "lapNumber": 106,
+          "timeSeconds": 102.22090148925781,
+          "timeFormatted": "1:42.221"
+        },
+        {
+          "lapNumber": 112,
+          "timeSeconds": 102.06749725341797,
+          "timeFormatted": "1:42.067"
+        },
+        {
+          "lapNumber": 114,
+          "timeSeconds": 102.76940155029297,
+          "timeFormatted": "1:42.769"
+        },
+        {
+          "lapNumber": 118,
+          "timeSeconds": 102.53289794921875,
+          "timeFormatted": "1:42.533"
+        }
+      ],
+      "bestLapTime": 102.01940155029297,
+      "bestLapTimeFormatted": "1:42.019",
+      "totalLaps": 14
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 07-02-26.ibt",
+      "date": "2026-01-14",
+      "time": "07:02:26",
+      "datetime": "2026-01-14T14:02:26.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 114.0376968383789,
+          "timeFormatted": "1:54.038"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 105.81800079345703,
+          "timeFormatted": "1:45.818"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 107.0542984008789,
+          "timeFormatted": "1:47.054"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 105.3093032836914,
+          "timeFormatted": "1:45.309"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 104.45269775390625,
+          "timeFormatted": "1:44.453"
+        },
+        {
+          "lapNumber": 7,
+          "timeSeconds": 106.84929656982422,
+          "timeFormatted": "1:46.849"
+        },
+        {
+          "lapNumber": 8,
+          "timeSeconds": 104.30259704589844,
+          "timeFormatted": "1:44.303"
+        },
+        {
+          "lapNumber": 9,
+          "timeSeconds": 103.82430267333984,
+          "timeFormatted": "1:43.824"
+        },
+        {
+          "lapNumber": 10,
+          "timeSeconds": 103.82649993896484,
+          "timeFormatted": "1:43.826"
+        }
+      ],
+      "bestLapTime": 102.85710144042969,
+      "bestLapTimeFormatted": "1:42.857",
+      "totalLaps": 9
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 07-36-36.ibt",
+      "date": "2026-01-14",
+      "time": "07:36:36",
+      "datetime": "2026-01-14T14:36:36.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 07-37-27.ibt",
+      "date": "2026-01-14",
+      "time": "07:37:27",
+      "datetime": "2026-01-14T14:37:27.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 07-38-17.ibt",
+      "date": "2026-01-14",
+      "time": "07:38:17",
+      "datetime": "2026-01-14T14:38:17.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 112.5823974609375,
+          "timeFormatted": "1:52.582"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 105.51640319824219,
+          "timeFormatted": "1:45.516"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 104.28040313720703,
+          "timeFormatted": "1:44.280"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 105.62470245361328,
+          "timeFormatted": "1:45.625"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 103.30889892578125,
+          "timeFormatted": "1:43.309"
+        },
+        {
+          "lapNumber": 7,
+          "timeSeconds": 103.52970123291016,
+          "timeFormatted": "1:43.530"
+        },
+        {
+          "lapNumber": 8,
+          "timeSeconds": 103.69629669189453,
+          "timeFormatted": "1:43.696"
+        }
+      ],
+      "bestLapTime": 103.12059783935547,
+      "bestLapTimeFormatted": "1:43.121",
+      "totalLaps": 7
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 09-26-47.ibt",
+      "date": "2026-01-14",
+      "time": "09:26:47",
+      "datetime": "2026-01-14T16:26:47.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 09-27-52.ibt",
+      "date": "2026-01-14",
+      "time": "09:27:52",
+      "datetime": "2026-01-14T16:27:52.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 09-29-06.ibt",
+      "date": "2026-01-14",
+      "time": "09:29:06",
+      "datetime": "2026-01-14T16:29:06.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 09-31-11.ibt",
+      "date": "2026-01-14",
+      "time": "09:31:11",
+      "datetime": "2026-01-14T16:31:11.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 09-31-44.ibt",
+      "date": "2026-01-14",
+      "time": "09:31:44",
+      "datetime": "2026-01-14T16:31:44.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 111.92289733886719,
+          "timeFormatted": "1:51.923"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 105.84200286865234,
+          "timeFormatted": "1:45.842"
+        }
+      ],
+      "bestLapTime": 105.50920104980469,
+      "bestLapTimeFormatted": "1:45.509",
+      "totalLaps": 2
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 09-45-51.ibt",
+      "date": "2026-01-14",
+      "time": "09:45:51",
+      "datetime": "2026-01-14T16:45:51.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": 105.50920104980469,
+      "bestLapTimeFormatted": "1:45.509",
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 09-46-03.ibt",
+      "date": "2026-01-14",
+      "time": "09:46:03",
+      "datetime": "2026-01-14T16:46:03.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 09-48-41.ibt",
+      "date": "2026-01-14",
+      "time": "09:48:41",
+      "datetime": "2026-01-14T16:48:41.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 110.5447006225586,
+          "timeFormatted": "1:50.545"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 105.5634994506836,
+          "timeFormatted": "1:45.563"
+        }
+      ],
+      "bestLapTime": 105.5634994506836,
+      "bestLapTimeFormatted": "1:45.563",
+      "totalLaps": 2
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 22-35-37.ibt",
+      "date": "2026-01-14",
+      "time": "22:35:37",
+      "datetime": "2026-01-15T05:35:37.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 22-38-36.ibt",
+      "date": "2026-01-14",
+      "time": "22:38:36",
+      "datetime": "2026-01-15T05:38:36.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 110.12539672851562,
+          "timeFormatted": "1:50.125"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 104.44580078125,
+          "timeFormatted": "1:44.446"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 103.95919799804688,
+          "timeFormatted": "1:43.959"
+        },
+        {
+          "lapNumber": 5,
+          "timeSeconds": 105.597900390625,
+          "timeFormatted": "1:45.598"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 104.55130004882812,
+          "timeFormatted": "1:44.551"
+        },
+        {
+          "lapNumber": 7,
+          "timeSeconds": 103.95220184326172,
+          "timeFormatted": "1:43.952"
+        },
+        {
+          "lapNumber": 8,
+          "timeSeconds": 103.39299774169922,
+          "timeFormatted": "1:43.393"
+        },
+        {
+          "lapNumber": 9,
+          "timeSeconds": 103.59049987792969,
+          "timeFormatted": "1:43.590"
+        }
+      ],
+      "bestLapTime": 103.39299774169922,
+      "bestLapTimeFormatted": "1:43.393",
+      "totalLaps": 8
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-15 10-29-44.ibt",
+      "date": "2026-01-15",
+      "time": "10:29:44",
+      "datetime": "2026-01-15T17:29:44.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "laps": [
+        {
+          "lapNumber": 2,
+          "timeSeconds": 104.62220001220703,
+          "timeFormatted": "1:44.622"
+        },
+        {
+          "lapNumber": 3,
+          "timeSeconds": 102.90740203857422,
+          "timeFormatted": "1:42.907"
+        },
+        {
+          "lapNumber": 4,
+          "timeSeconds": 102.35379791259766,
+          "timeFormatted": "1:42.354"
+        },
+        {
+          "lapNumber": 6,
+          "timeSeconds": 103.41549682617188,
+          "timeFormatted": "1:43.415"
+        },
+        {
+          "lapNumber": 17,
+          "timeSeconds": 102.0884017944336,
+          "timeFormatted": "1:42.088"
+        }
+      ],
+      "bestLapTime": 101.9094009399414,
+      "bestLapTimeFormatted": "1:41.909",
+      "totalLaps": 5
+    },
+    {
+      "fileName": "superformulasf23 honda_monza full 2026-01-15 09-05-49.ibt",
+      "date": "2026-01-15",
+      "time": "09:05:49",
+      "datetime": "2026-01-15T16:05:49.000Z",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula SF23 - Honda",
+      "driver": "Russell Adams7",
+      "laps": [],
+      "bestLapTime": 91.72869873046875,
+      "bestLapTimeFormatted": "1:31.729",
+      "totalLaps": 0
+    }
+  ]
+}
