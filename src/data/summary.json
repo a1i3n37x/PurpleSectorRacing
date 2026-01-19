@@ -1,75 +1,99 @@
 {
-  "generated": "2026-01-19T15:34:51.555Z",
+  "generated": "2026-01-19T17:48:46.316Z",
   "track": "Autodromo Nazionale Monza",
   "trackShort": "Monza Full",
-  "car": "Super Formula Lights 324",
   "totalSessions": 56,
   "totalLaps": 149,
   "bestOverallTime": 91.72869873046875,
   "bestOverallTimeFormatted": "1:31.729",
+  "carStats": [
+    {
+      "car": "Super Formula Lights 324",
+      "totalSessions": 29,
+      "totalLaps": 149,
+      "bestTime": 101.9094009399414,
+      "bestTimeFormatted": "1:41.909"
+    },
+    {
+      "car": "Super Formula SF23 - Honda",
+      "totalSessions": 1,
+      "totalLaps": 0,
+      "bestTime": 91.72869873046875,
+      "bestTimeFormatted": "1:31.729"
+    }
+  ],
   "dailyBests": [
     {
       "date": "2026-01-08",
+      "car": "Super Formula Lights 324",
       "sessions": 5,
       "totalLaps": 13,
       "bestTime": 102.39469909667969,
       "bestTimeFormatted": "1:42.395",
-      "track": "Autodromo Nazionale Monza",
-      "car": "Super Formula Lights 324"
+      "track": "Autodromo Nazionale Monza"
     },
     {
       "date": "2026-01-09",
+      "car": "Super Formula Lights 324",
       "sessions": 6,
       "totalLaps": 38,
       "bestTime": 102.66079711914062,
       "bestTimeFormatted": "1:42.661",
-      "track": "Autodromo Nazionale Monza",
-      "car": "Super Formula Lights 324"
+      "track": "Autodromo Nazionale Monza"
     },
     {
       "date": "2026-01-11",
+      "car": "Super Formula Lights 324",
       "sessions": 4,
       "totalLaps": 23,
       "bestTime": 102.38719940185547,
       "bestTimeFormatted": "1:42.387",
-      "track": "Autodromo Nazionale Monza",
-      "car": "Super Formula Lights 324"
+      "track": "Autodromo Nazionale Monza"
     },
     {
       "date": "2026-01-12",
+      "car": "Super Formula Lights 324",
       "sessions": 5,
       "totalLaps": 23,
       "bestTime": 102.55509948730469,
       "bestTimeFormatted": "1:42.555",
-      "track": "Autodromo Nazionale Monza",
-      "car": "Super Formula Lights 324"
+      "track": "Autodromo Nazionale Monza"
     },
     {
       "date": "2026-01-13",
+      "car": "Super Formula Lights 324",
       "sessions": 2,
       "totalLaps": 19,
       "bestTime": 102.01940155029297,
       "bestTimeFormatted": "1:42.019",
-      "track": "Autodromo Nazionale Monza",
-      "car": "Super Formula Lights 324"
+      "track": "Autodromo Nazionale Monza"
     },
     {
       "date": "2026-01-14",
+      "car": "Super Formula Lights 324",
       "sessions": 6,
       "totalLaps": 28,
       "bestTime": 102.85710144042969,
       "bestTimeFormatted": "1:42.857",
-      "track": "Autodromo Nazionale Monza",
-      "car": "Super Formula Lights 324"
+      "track": "Autodromo Nazionale Monza"
     },
     {
       "date": "2026-01-15",
-      "sessions": 2,
+      "car": "Super Formula Lights 324",
+      "sessions": 1,
       "totalLaps": 5,
+      "bestTime": 101.9094009399414,
+      "bestTimeFormatted": "1:41.909",
+      "track": "Autodromo Nazionale Monza"
+    },
+    {
+      "date": "2026-01-15",
+      "car": "Super Formula SF23 - Honda",
+      "sessions": 1,
+      "totalLaps": 0,
       "bestTime": 91.72869873046875,
       "bestTimeFormatted": "1:31.729",
-      "track": "Autodromo Nazionale Monza",
-      "car": "Super Formula Lights 324"
+      "track": "Autodromo Nazionale Monza"
     }
   ]
 }

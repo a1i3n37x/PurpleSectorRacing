@@ -213,35 +213,70 @@ console.log(`Total sessions: ${sessions.length}`);
 console.log(`Total laps recorded: ${totalLaps}`);
 console.log(`Best overall lap: ${formatLapTime(bestOverallTime)} (${bestOverallFile})`);
 
-// Group by date for daily best times
-const byDate = {};
+// Group by date AND car for daily best times per car
+const byDateAndCar = {};
+const carStats = {};
+
 sessions.forEach(s => {
-  if (s.date && s.bestLapTime) {
-    if (!byDate[s.date]) {
-      byDate[s.date] = {
+  if (s.date && s.bestLapTime && s.car) {
+    const key = `${s.date}|${s.car}`;
+
+    // Track per date+car
+    if (!byDateAndCar[key]) {
+      byDateAndCar[key] = {
         date: s.date,
+        car: s.car,
         sessions: 0,
         totalLaps: 0,
         bestTime: Infinity,
         bestTimeFormatted: null,
-        track: s.track,
-        car: s.car
+        track: s.track
       };
     }
-    byDate[s.date].sessions++;
-    byDate[s.date].totalLaps += s.totalLaps;
-    if (s.bestLapTime < byDate[s.date].bestTime) {
-      byDate[s.date].bestTime = s.bestLapTime;
-      byDate[s.date].bestTimeFormatted = s.bestLapTimeFormatted;
+    byDateAndCar[key].sessions++;
+    byDateAndCar[key].totalLaps += s.totalLaps;
+    if (s.bestLapTime < byDateAndCar[key].bestTime) {
+      byDateAndCar[key].bestTime = s.bestLapTime;
+      byDateAndCar[key].bestTimeFormatted = s.bestLapTimeFormatted;
+    }
+
+    // Track overall car stats
+    if (!carStats[s.car]) {
+      carStats[s.car] = {
+        car: s.car,
+        totalSessions: 0,
+        totalLaps: 0,
+        bestTime: Infinity,
+        bestTimeFormatted: null
+      };
+    }
+    carStats[s.car].totalSessions++;
+    carStats[s.car].totalLaps += s.totalLaps;
+    if (s.bestLapTime < carStats[s.car].bestTime) {
+      carStats[s.car].bestTime = s.bestLapTime;
+      carStats[s.car].bestTimeFormatted = s.bestLapTimeFormatted;
     }
   }
 });
 
-const dailyBests = Object.values(byDate).sort((a, b) => a.date.localeCompare(b.date));
+// Convert to array and sort by date, then car name
+const dailyBests = Object.values(byDateAndCar).sort((a, b) => {
+  const dateCompare = a.date.localeCompare(b.date);
+  if (dateCompare !== 0) return dateCompare;
+  return a.car.localeCompare(b.car);
+});
 
-console.log('\n--- Daily Best Lap Times ---');
+// Convert car stats to array sorted by session count (most used first)
+const carStatsArray = Object.values(carStats).sort((a, b) => b.totalSessions - a.totalSessions);
+
+console.log('\n--- Car Statistics ---');
+carStatsArray.forEach(c => {
+  console.log(`${c.car}: ${c.bestTimeFormatted} best, ${c.totalSessions} sessions, ${c.totalLaps} laps`);
+});
+
+console.log('\n--- Daily Best Lap Times (by car) ---');
 dailyBests.forEach(d => {
-  console.log(`${d.date}: ${d.bestTimeFormatted} (${d.sessions} sessions, ${d.totalLaps} laps)`);
+  console.log(`${d.date} [${d.car}]: ${d.bestTimeFormatted} (${d.sessions} sessions, ${d.totalLaps} laps)`);
 });
 
 // Save data
@@ -251,6 +286,7 @@ const outputData = {
   totalLaps,
   bestOverallTime,
   bestOverallTimeFormatted: formatLapTime(bestOverallTime),
+  carStats: carStatsArray,
   dailyBests,
   sessions: sessions.filter(s => !s.error)
 };
@@ -264,11 +300,11 @@ const summaryData = {
   generated: new Date().toISOString(),
   track: 'Autodromo Nazionale Monza',
   trackShort: 'Monza Full',
-  car: 'Super Formula Lights 324',
   totalSessions: sessions.length,
   totalLaps,
   bestOverallTime,
   bestOverallTimeFormatted: formatLapTime(bestOverallTime),
+  carStats: carStatsArray,
   dailyBests
 };
 
