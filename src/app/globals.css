@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+:root {
+  /* Core Colors - Deep Blacks & Purples */
+  --background: #050507;
+  --background-secondary: #0a0a0f;
+  --background-card: #0f0f18;
+  --foreground: #f0f0f5;
+  --foreground-muted: #8888a0;
+
+  /* Purple Spectrum */
+  --purple-deep: #1a0a2e;
+  --purple-primary: #6b21a8;
+  --purple-bright: #9333ea;
+  --purple-electric: #a855f7;
+  --purple-glow: #c084fc;
+
+  /* Accent - Electric Violet/Magenta */
+  --accent-magenta: #e11d9b;
+  --accent-violet: #8b5cf6;
+  --accent-cyan: #22d3ee;
+
+  /* Racing Accents */
+  --sector-purple: #9333ea;
+  --sector-green: #22c55e;
+  --delta-positive: #ef4444;
+  --delta-negative: #22c55e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-card: var(--background-card);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-purple-deep: var(--purple-deep);
+  --color-purple-primary: var(--purple-primary);
+  --color-purple-bright: var(--purple-bright);
+  --color-purple-electric: var(--purple-electric);
+  --color-purple-glow: var(--purple-glow);
+  --color-accent-magenta: var(--accent-magenta);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-cyan: var(--accent-cyan);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--purple-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-bright);
+}
+
+/* Selection */
+::selection {
+  background: var(--purple-primary);
+  color: white;
+}
+
+/* Glow Effects */
+.glow-purple {
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.3),
+              0 0 40px rgba(147, 51, 234, 0.2),
+              0 0 60px rgba(147, 51, 234, 0.1);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(147, 51, 234, 0.5),
+               0 0 20px rgba(147, 51, 234, 0.3),
+               0 0 30px rgba(147, 51, 234, 0.2);
+}
+
+.glow-border {
+  box-shadow: inset 0 0 20px rgba(147, 51, 234, 0.1),
+              0 0 20px rgba(147, 51, 234, 0.2);
+}
+
+/* Gradient Backgrounds */
+.gradient-purple {
+  background: linear-gradient(135deg, var(--purple-deep) 0%, var(--background) 100%);
+}
+
+.gradient-radial {
+  background: radial-gradient(ellipse at center, var(--purple-deep) 0%, var(--background) 70%);
+}
+
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(135deg, var(--purple-glow) 0%, var(--accent-magenta) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card Styling */
+.card {
+  background: var(--background-card);
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(147, 51, 234, 0.4);
+  box-shadow: 0 0 30px rgba(147, 51, 234, 0.15);
+}
+
+/* Button Base */
+.btn-primary {
+  background: linear-gradient(135deg, var(--purple-primary) 0%, var(--purple-bright) 100%);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(147, 51, 234, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--foreground);
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(147, 51, 234, 0.5);
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: rgba(147, 51, 234, 0.1);
+  border-color: var(--purple-bright);
+}
+
+/* Stats Display */
+.stat-value {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Racing-specific */
+.lap-time {
+  font-family: var(--font-mono), monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+/* Particle/noise overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 1000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Animated gradient border */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-border {
+  background: linear-gradient(90deg, var(--purple-primary), var(--accent-magenta), var(--purple-bright), var(--purple-primary));
+  background-size: 300% 300%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Light trail effect */
+@keyframes light-trail {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(200%); opacity: 0; }
+}
+
+.light-trail {
+  position: relative;
+  overflow: hidden;
+}
+
+.light-trail::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(147, 51, 234, 0.3), transparent);
+  animation: light-trail 3s ease-in-out infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(147, 51, 234, 0.6); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
