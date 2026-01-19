@@ -6,6 +6,10 @@ const path = require('path');
  * Outputs JSON for use in the web app
  */
 
+// Configuration
+const OUTLIER_THRESHOLD = 0.15; // Exclude laps >15% slower than session best
+const EXCLUDE_WET_SESSIONS = true; // Exclude sessions with precipitation > 0%
+
 function parseIbtHeader(buffer) {
   return {
     version: buffer.readInt32LE(0),
@@ -54,12 +58,19 @@ function extractSessionInfo(buffer, offset, len) {
   const trackShortMatch = yaml.match(/TrackDisplayShortName:\s*(.+)/);
   const carMatch = yaml.match(/CarScreenName:\s*(.+)/);
   const driverMatch = yaml.match(/UserName:\s*(.+)/);
+  const precipMatch = yaml.match(/TrackPrecipitation:\s*(\d+)/);
+  const skiesMatch = yaml.match(/TrackSkies:\s*(.+)/);
+
+  const precipitation = precipMatch ? parseInt(precipMatch[1], 10) : 0;
 
   return {
     track: trackMatch ? trackMatch[1].trim() : 'Unknown',
     trackShort: trackShortMatch ? trackShortMatch[1].trim() : 'Unknown',
     car: carMatch ? carMatch[1].trim() : 'Unknown',
     driver: driverMatch ? driverMatch[1].trim() : 'Unknown',
+    precipitation, // 0-100%
+    skies: skiesMatch ? skiesMatch[1].trim() : 'Unknown',
+    isWet: precipitation > 0,
   };
 }
 
@@ -113,6 +124,17 @@ function calculateConsistencyScore(values) {
   // Scale: CV of 0 = 100%, CV of 0.05 (5%) = 75%, CV of 0.10 = 50%, CV of 0.20+ = 0%
   const score = Math.max(0, Math.min(100, 100 * (1 - cv * 5)));
   return Math.round(score);
+}
+
+function filterOutlierLaps(lapTimes, bestTime) {
+  // Filter out laps that are significantly slower than the best lap
+  // These are likely incidents, spins, warm-up laps, etc.
+  if (!lapTimes || lapTimes.length === 0 || !bestTime) return lapTimes;
+
+  const threshold = bestTime * (1 + OUTLIER_THRESHOLD);
+  const filtered = lapTimes.filter(time => time <= threshold);
+
+  return filtered;
 }
 
 function processIbtFile(filePath) {
@@ -247,9 +269,17 @@ console.log(`Best overall lap: ${formatLapTime(bestOverallTime)} (${bestOverallF
 // Group by date AND car for daily stats per car
 const byDateAndCar = {};
 const carStats = {};
+let wetSessionsSkipped = 0;
+let outlierLapsFiltered = 0;
 
 sessions.forEach(s => {
   if (s.date && s.car) {
+    // Skip wet sessions if configured
+    if (EXCLUDE_WET_SESSIONS && s.isWet) {
+      wetSessionsSkipped++;
+      return;
+    }
+
     const key = `${s.date}|${s.car}`;
 
     // Track per date+car
@@ -312,9 +342,18 @@ sessions.forEach(s => {
   }
 });
 
-// Calculate consistency stats for each date+car combo
+// Calculate consistency stats for each date+car combo (with outlier filtering)
 Object.values(byDateAndCar).forEach(entry => {
-  const times = entry.allLapTimes;
+  const allTimes = entry.allLapTimes;
+  // Filter outliers for consistency calculations
+  const times = filterOutlierLaps(allTimes, entry.bestTime);
+  const outlierCount = allTimes.length - times.length;
+  outlierLapsFiltered += outlierCount;
+
+  entry.totalLapsRaw = allTimes.length;
+  entry.totalLapsClean = times.length;
+  entry.outliersFiltered = outlierCount;
+
   if (times.length > 0) {
     entry.medianTime = calculateMedian(times);
     entry.medianTimeFormatted = formatLapTime(entry.medianTime);
@@ -336,9 +375,14 @@ Object.values(byDateAndCar).forEach(entry => {
   delete entry.allLapTimes;
 });
 
-// Calculate consistency stats for each car
+// Calculate consistency stats for each car (with outlier filtering)
 Object.values(carStats).forEach(entry => {
-  const times = entry.allLapTimes;
+  const allTimes = entry.allLapTimes;
+  const times = filterOutlierLaps(allTimes, entry.bestTime);
+
+  entry.totalLapsRaw = allTimes.length;
+  entry.totalLapsClean = times.length;
+
   if (times.length > 0) {
     entry.medianTime = calculateMedian(times);
     entry.medianTimeFormatted = formatLapTime(entry.medianTime);
@@ -361,17 +405,22 @@ const dailyBests = Object.values(byDateAndCar).sort((a, b) => {
 // Convert car stats to array sorted by session count (most used first)
 const carStatsArray = Object.values(carStats).sort((a, b) => b.totalSessions - a.totalSessions);
 
+console.log('\n--- Filtering Stats ---');
+console.log(`Wet sessions skipped: ${wetSessionsSkipped}`);
+console.log(`Outlier laps filtered: ${outlierLapsFiltered} (>${OUTLIER_THRESHOLD * 100}% slower than best)`);
+
 console.log('\n--- Car Statistics ---');
 carStatsArray.forEach(c => {
   const consistency = c.consistencyScore !== null ? `${c.consistencyScore}%` : 'N/A';
-  console.log(`${c.car}: ${c.bestTimeFormatted} best, median ${c.medianTimeFormatted}, ${consistency} consistency, ${c.totalLaps} laps`);
+  console.log(`${c.car}: ${c.bestTimeFormatted} best, median ${c.medianTimeFormatted}, ${consistency} consistency, ${c.totalLapsClean}/${c.totalLapsRaw} laps`);
 });
 
 console.log('\n--- Daily Stats (by car) ---');
 dailyBests.forEach(d => {
   const consistency = d.consistencyScore !== null ? `${d.consistencyScore}%` : 'N/A';
   const range = d.rangeFormatted || 'N/A';
-  console.log(`${d.date} [${d.car}]: Best ${d.bestTimeFormatted}, Median ${d.medianTimeFormatted}, Range ${range}, Consistency ${consistency} (${d.totalLaps} laps)`);
+  const filtered = d.outliersFiltered > 0 ? ` [${d.outliersFiltered} outliers]` : '';
+  console.log(`${d.date} [${d.car}]: Best ${d.bestTimeFormatted}, Median ${d.medianTimeFormatted}, Range ${range}, Consistency ${consistency} (${d.totalLapsClean} laps)${filtered}`);
 });
 
 // Save data
