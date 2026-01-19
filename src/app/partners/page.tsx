@@ -147,11 +147,11 @@ export default function PartnersPage() {
                 If there&apos;s a potential fit, I&apos;d be happy to discuss.
               </p>
               <a
-                href="mailto:partnerships@purplesectorracing.com"
+                href="mailto:partnerships@purplesectorsracing.com"
                 className="btn-primary inline-flex items-center gap-2"
               >
                 <Mail size={18} />
-                partnerships@purplesectorracing.com
+                partnerships@purplesectorsracing.com
               </a>
             </div>
           </motion.div>

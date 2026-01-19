@@ -34,7 +34,7 @@ export default function Navigation() {
               <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-[var(--purple-primary)] to-[var(--purple-bright)] opacity-0 group-hover:opacity-50 blur-lg transition-opacity" />
             </div>
             <span className="font-semibold text-lg tracking-tight hidden sm:block">
-              Purple<span className="text-[var(--purple-bright)]">Sector</span>Racing
+              Purple<span className="text-[var(--purple-bright)]">Sectors</span>Racing
             </span>
           </Link>
 

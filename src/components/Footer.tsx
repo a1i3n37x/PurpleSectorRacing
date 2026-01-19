@@ -13,7 +13,7 @@ export default function Footer() {
                 PS
               </div>
               <span className="font-semibold text-lg tracking-tight">
-                Purple<span className="text-[var(--purple-bright)]">Sector</span>Racing
+                Purple<span className="text-[var(--purple-bright)]">Sectors</span>Racing
               </span>
             </div>
             <p className="text-[var(--foreground-muted)] text-sm max-w-md mb-6">
@@ -85,7 +85,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-[var(--purple-primary)]/10 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-[var(--foreground-muted)]">
-            © {new Date().getFullYear()} PurpleSectorRacing. All rights reserved.
+            © {new Date().getFullYear()} PurpleSectorsRacing. All rights reserved.
           </p>
           <p className="text-xs text-[var(--foreground-muted)]">
             Built with obsession. Fueled by the pursuit of speed.

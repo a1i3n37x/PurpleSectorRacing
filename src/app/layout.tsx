@@ -15,20 +15,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PurpleSectorRacing | The Pursuit of Speed",
-  description: "170 hours. 2 months. Top 10% on Monza and Silverstone. This is just the beginning. Follow the journey from sim racer to something more.",
+  title: "PurpleSectorsRacing | Sim Racing Documented",
+  description: "Following the pursuit of speed in iRacing. The work, the progress, and where it leads.",
   keywords: ["sim racing", "iRacing", "esports", "motorsport", "racing", "Super Formula"],
-  authors: [{ name: "PurpleSectorRacing" }],
+  authors: [{ name: "PurpleSectorsRacing" }],
   openGraph: {
-    title: "PurpleSectorRacing | The Pursuit of Speed",
-    description: "170 hours. 2 months. Top 10% on Monza and Silverstone. This is just the beginning.",
+    title: "PurpleSectorsRacing | Sim Racing Documented",
+    description: "Following the pursuit of speed in iRacing. The work, the progress, and where it leads.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PurpleSectorRacing | The Pursuit of Speed",
-    description: "170 hours. 2 months. Top 10% on Monza and Silverstone. This is just the beginning.",
+    title: "PurpleSectorsRacing | Sim Racing Documented",
+    description: "Following the pursuit of speed in iRacing. The work, the progress, and where it leads.",
   },
 };
 
