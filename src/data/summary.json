@@ -1,27 +1,55 @@
 {
-  "generated": "2026-01-19T17:05:27.899589",
+  "generated": "2026-01-20T03:09:46.280762",
   "track": "Autodromo Nazionale Monza",
   "trackShort": "Monza Full",
-  "totalSessions": 145,
-  "totalLaps": 349,
-  "totalTrackTimeSeconds": 231770.21666666667,
-  "totalTrackTimeFormatted": "64:22:50",
+  "totalSessions": 161,
+  "totalLaps": 383,
+  "totalTrackTimeSeconds": 266467.05,
+  "totalTrackTimeFormatted": "74:01:07",
   "bestOverallTime": 101.9094009399414,
   "bestOverallTimeFormatted": "1:41.909",
   "carStats": [
     {
       "car": "Super Formula Lights 324",
-      "totalSessions": 145,
-      "totalLaps": 348,
+      "totalSessions": 159,
+      "totalLaps": 382,
       "bestTime": 101.9094009399414,
       "bestTimeFormatted": "1:41.909",
-      "sessionTimeSeconds": 231770.21666666676,
-      "totalLapsRaw": 348,
-      "totalLapsClean": 337,
-      "medianTime": 104.35209655761719,
-      "medianTimeFormatted": "1:44.352",
+      "sessionTimeSeconds": 265044.00000000006,
+      "totalLapsRaw": 382,
+      "totalLapsClean": 369,
+      "medianTime": 104.40170288085938,
+      "medianTimeFormatted": "1:44.402",
       "consistencyScore": 85,
-      "sessionTimeFormatted": "64:22:50"
+      "sessionTimeFormatted": "73:37:24"
+    },
+    {
+      "car": "Honda Civic Type R TCR",
+      "totalSessions": 1,
+      "totalLaps": 0,
+      "bestTime": null,
+      "bestTimeFormatted": null,
+      "sessionTimeSeconds": 295.75,
+      "totalLapsRaw": 0,
+      "totalLapsClean": 0,
+      "medianTime": null,
+      "medianTimeFormatted": null,
+      "consistencyScore": null,
+      "sessionTimeFormatted": "0:04:55"
+    },
+    {
+      "car": "Super Formula SF23 - Honda",
+      "totalSessions": 1,
+      "totalLaps": 0,
+      "bestTime": null,
+      "bestTimeFormatted": null,
+      "sessionTimeSeconds": 1127.3,
+      "totalLapsRaw": 0,
+      "totalLapsClean": 0,
+      "medianTime": null,
+      "medianTimeFormatted": null,
+      "consistencyScore": null,
+      "sessionTimeFormatted": "0:18:47"
     }
   ],
   "dailyBests": [
@@ -259,23 +287,151 @@
     {
       "date": "2026-01-19",
       "car": "Super Formula Lights 324",
-      "sessions": 9,
-      "totalLaps": 33,
+      "sessions": 13,
+      "totalLaps": 51,
       "bestTime": 102.04389953613281,
       "bestTimeFormatted": "1:42.044",
       "track": "Autodromo Nazionale Monza",
-      "sessionTimeSeconds": 18915.933333333334,
-      "totalLapsRaw": 33,
-      "totalLapsClean": 28,
-      "outliersFiltered": 5,
-      "medianTime": 103.72119903564453,
-      "medianTimeFormatted": "1:43.721",
+      "sessionTimeSeconds": 48681.38333333333,
+      "totalLapsRaw": 51,
+      "totalLapsClean": 44,
+      "outliersFiltered": 7,
+      "medianTime": 103.45170211791992,
+      "medianTimeFormatted": "1:43.452",
       "slowestTime": 116.59290313720703,
       "slowestTimeFormatted": "1:56.593",
       "range": 14.549003601074219,
       "rangeFormatted": "14.549s",
       "consistencyScore": 84,
-      "sessionTimeFormatted": "5:15:15"
+      "sessionTimeFormatted": "13:31:21"
+    },
+    {
+      "date": "2026-01-20",
+      "car": "Honda Civic Type R TCR",
+      "sessions": 1,
+      "totalLaps": 0,
+      "bestTime": null,
+      "bestTimeFormatted": null,
+      "track": "Lime Rock Park",
+      "sessionTimeSeconds": 295.75,
+      "totalLapsRaw": 0,
+      "totalLapsClean": 0,
+      "outliersFiltered": 0,
+      "medianTime": null,
+      "medianTimeFormatted": null,
+      "slowestTime": null,
+      "slowestTimeFormatted": null,
+      "range": null,
+      "rangeFormatted": null,
+      "consistencyScore": null,
+      "sessionTimeFormatted": "0:04:55"
+    },
+    {
+      "date": "2026-01-20",
+      "car": "Super Formula Lights 324",
+      "sessions": 10,
+      "totalLaps": 16,
+      "bestTime": 103.92469787597656,
+      "bestTimeFormatted": "1:43.925",
+      "track": "Miami International Autodrome",
+      "sessionTimeSeconds": 3508.3333333333335,
+      "totalLapsRaw": 16,
+      "totalLapsClean": 16,
+      "outliersFiltered": 0,
+      "medianTime": 106.19519805908203,
+      "medianTimeFormatted": "1:46.195",
+      "slowestTime": 117.11329650878906,
+      "slowestTimeFormatted": "1:57.113",
+      "range": 13.1885986328125,
+      "rangeFormatted": "13.189s",
+      "consistencyScore": 82,
+      "sessionTimeFormatted": "0:58:28"
+    },
+    {
+      "date": "2026-01-20",
+      "car": "Super Formula SF23 - Honda",
+      "sessions": 1,
+      "totalLaps": 0,
+      "bestTime": null,
+      "bestTimeFormatted": null,
+      "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 1127.3,
+      "totalLapsRaw": 0,
+      "totalLapsClean": 0,
+      "outliersFiltered": 0,
+      "medianTime": null,
+      "medianTimeFormatted": null,
+      "slowestTime": null,
+      "slowestTimeFormatted": null,
+      "range": null,
+      "rangeFormatted": null,
+      "consistencyScore": null,
+      "sessionTimeFormatted": "0:18:47"
     }
-  ]
+  ],
+  "purpleSectors": {
+    "allPurpleLaps": [
+      {
+        "file": "superformulalights324_monza full 2026-01-07 13-10-31.ibt",
+        "date": "2026-01-07",
+        "car": "Super Formula Lights 324",
+        "lap": 49,
+        "sectorTimes": [
+          35.30739974975586,
+          16.599998474121094,
+          18.066669464111328,
+          19.449996948242188,
+          14.93170166015625
+        ],
+        "lapTime": 104.33170318603516,
+        "lapTimeFormatted": "1:44.332"
+      }
+    ],
+    "almostPurpleLaps": [
+      {
+        "file": "superformulalights324_monza full 2026-01-08 22-40-32.ibt",
+        "date": "2026-01-08",
+        "car": "Super Formula Lights 324",
+        "lap": 36,
+        "purpleSectors": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "missedSector": 4,
+        "sectorTimes": [
+          35.24776840209961,
+          16.36666488647461,
+          17.5,
+          18.816665649414062,
+          15.263504028320312
+        ],
+        "lapTime": 103.16349792480469,
+        "lapTimeFormatted": "1:43.163"
+      }
+    ],
+    "bestSectorsByCar": {
+      "Super Formula Lights 324": {
+        "sectors": [
+          35.14583206176758,
+          16.066665649414062,
+          17.38333511352539,
+          18.633331298828125,
+          14.060035705566406
+        ],
+        "sectorsFormatted": [
+          "35.146",
+          "16.067",
+          "17.383",
+          "18.633",
+          "14.060"
+        ],
+        "theoreticalBest": 101.28919982910156,
+        "theoreticalBestFormatted": "1:41.289"
+      }
+    },
+    "totalAllPurple": 1,
+    "totalAlmostPurple": 1
+  }
 }

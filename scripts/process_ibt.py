@@ -84,6 +84,9 @@ def extract_session_info(data: bytes, offset: int, length: int) -> dict:
 
     precipitation = int(extract(r"TrackPrecipitation:\s*(\d+)") or 0)
 
+    # Extract sector boundaries
+    sector_starts = [float(m.group(1)) for m in re.finditer(r"SectorStartPct:\s*([\d.]+)", yaml_text)]
+
     return {
         "track": extract(r"TrackDisplayName:\s*(.+)") or "Unknown",
         "track_short": extract(r"TrackDisplayShortName:\s*(.+)") or "Unknown",
@@ -92,7 +95,126 @@ def extract_session_info(data: bytes, offset: int, length: int) -> dict:
         "precipitation": precipitation,
         "skies": extract(r"TrackSkies:\s*(.+)") or "Unknown",
         "is_wet": precipitation > 0,
+        "sector_starts": sector_starts,
+        "num_sectors": len(sector_starts),
     }
+
+
+def extract_sector_times(data: bytes, header: dict, variables: list, sector_starts: list) -> list:
+    """Extract sector times for each completed lap from telemetry data.
+
+    Only includes sectors where no incidents occurred (off-track, cutting, etc.)
+    """
+    if not sector_starts or len(sector_starts) < 2:
+        return {}
+
+    num_sectors = len(sector_starts)
+    sector_bounds = sector_starts + [1.0]  # Add finish line
+
+    # Build variable lookup
+    var_map = {v["name"]: v for v in variables}
+
+    # Check if we have incident tracking
+    has_incidents = "PlayerCarMyIncidentCount" in var_map
+
+    buf_offset = header["buf_offset"]
+    buf_len = header["buf_len"]
+    total_samples = (len(data) - buf_offset) // buf_len
+
+    # Process telemetry to find sector boundary crossings
+    laps_sectors = {}
+    prev_lap = None
+    prev_pct = 0.0
+    prev_incident_count = 0
+    split_times = {}
+    sector_incidents = {}  # Track which sectors had incidents
+
+    for i in range(total_samples):
+        sample_offset = buf_offset + i * buf_len
+
+        lap = read_var(data, var_map.get("Lap"), sample_offset)
+        pct = read_var(data, var_map.get("LapDistPct"), sample_offset)
+        lap_time = read_var(data, var_map.get("LapCurrentLapTime"), sample_offset)
+        last_lap_time = read_var(data, var_map.get("LapLastLapTime"), sample_offset)
+
+        # Track incidents
+        incident_count = 0
+        if has_incidents:
+            incident_count = read_var(data, var_map.get("PlayerCarMyIncidentCount"), sample_offset) or 0
+
+        if lap is None or pct is None or lap_time is None:
+            continue
+
+        # Check for incident during this sample
+        if has_incidents and incident_count > prev_incident_count:
+            # Find which sector we're in
+            current_sector = 0
+            for s_idx, bound in enumerate(sector_bounds[1:]):
+                if pct < bound:
+                    current_sector = s_idx
+                    break
+            sector_incidents[current_sector] = True
+            prev_incident_count = incident_count
+
+        # New lap - save previous lap's sectors
+        if prev_lap is not None and lap != prev_lap:
+            if split_times:
+                sectors = {}
+                sorted_splits = sorted(split_times.items())
+                for j in range(len(sorted_splits)):
+                    if j == 0:
+                        sectors[0] = sorted_splits[0][1]
+                    else:
+                        sectors[j] = sorted_splits[j][1] - sorted_splits[j - 1][1]
+
+                # Validate sector times - STRICT validation:
+                # 1. Each sector must be reasonable (varies by track/sector count)
+                # 2. Lap time must be in realistic range (75-130s covers most tracks)
+                # 3. Sum of sectors MUST match actual lap time within 0.5 seconds
+                # 4. NO incidents during any sector of this lap
+                if len(sectors) == num_sectors:
+                    times = list(sectors.values())
+                    sector_sum = sum(times)
+
+                    # Accept lap times in reasonable range for formula cars
+                    actual_lap = last_lap_time if last_lap_time and 75 < last_lap_time < 130 else None
+
+                    # Each sector must be reasonable - min varies by sector count
+                    # 3 sectors: ~25-35s each, 5 sectors: ~14-25s each
+                    min_sector = 20 if num_sectors <= 3 else 14
+                    sectors_valid = all(min_sector < t < 60 for t in times)
+                    # Total must be a realistic lap time
+                    total_valid = 75 < sector_sum < 130
+                    # Sector sum MUST match actual lap time very closely
+                    matches_lap = actual_lap is not None and abs(sector_sum - actual_lap) < 0.5
+                    # NO incidents during this lap
+                    no_incidents = len(sector_incidents) == 0
+
+                    if sectors_valid and total_valid and matches_lap and no_incidents:
+                        laps_sectors[prev_lap] = {
+                            "sectors": sectors,
+                            "lap_time": actual_lap,
+                            "clean": True,
+                        }
+
+            split_times = {}
+            sector_incidents = {}  # Reset for new lap
+
+        prev_lap = lap
+
+        # Check for boundary crossings
+        for bound in sector_bounds[1:]:
+            if bound < 1.0:
+                if prev_pct < bound <= pct:
+                    split_times[bound] = lap_time
+            else:
+                # Finish line wrap-around
+                if pct < prev_pct and prev_pct > 0.9:
+                    split_times[1.0] = lap_time
+
+        prev_pct = pct
+
+    return laps_sectors
 
 
 def parse_date_from_filename(filename: str) -> Optional[dict]:
@@ -270,6 +392,10 @@ def process_ibt_file(file_path: Path) -> dict:
 
     best_time = session_best_time if session_best_time < float("inf") else None
 
+    # Extract sector times for each lap
+    sector_starts = session_info.get("sector_starts", [])
+    laps_with_sectors = extract_sector_times(data, header, variables, sector_starts)
+
     return {
         "file_name": filename,
         "date": date_info["date"] if date_info else None,
@@ -282,7 +408,62 @@ def process_ibt_file(file_path: Path) -> dict:
         "total_laps": len(laps),
         "session_duration_seconds": session_duration_seconds,
         "session_duration_formatted": format_duration(session_duration_seconds),
+        "laps_with_sectors": laps_with_sectors,
     }
+
+
+def detect_purple_sectors(laps_with_sectors: dict, best_sectors: dict, num_sectors: int) -> list:
+    """
+    Detect purple (personal best) sectors for each lap.
+    Returns list of notable laps with purple sector info.
+    """
+    notable_laps = []
+
+    # We need to process laps in order to track evolving personal bests
+    current_bests = {i: float("inf") for i in range(num_sectors)}
+
+    for lap_num in sorted(laps_with_sectors.keys()):
+        lap_data = laps_with_sectors[lap_num]
+        sectors = lap_data.get("sectors", {})
+
+        if len(sectors) != num_sectors:
+            continue
+
+        purple_count = 0
+        purple_sectors = []
+
+        for sector_idx in range(num_sectors):
+            sector_time = sectors.get(sector_idx)
+            if sector_time is None:
+                continue
+
+            # Check if this is a personal best for this sector
+            if sector_time < current_bests[sector_idx]:
+                purple_count += 1
+                purple_sectors.append(sector_idx)
+                current_bests[sector_idx] = sector_time
+
+        # Determine lap classification
+        if purple_count == num_sectors:
+            classification = "ALL_PURPLE"
+        elif purple_count == num_sectors - 1:
+            classification = "ALMOST"
+        elif purple_count > 0:
+            classification = "PARTIAL"
+        else:
+            classification = None
+
+        if classification:
+            notable_laps.append({
+                "lap": lap_num,
+                "classification": classification,
+                "purple_count": purple_count,
+                "purple_sectors": purple_sectors,
+                "sector_times": [sectors.get(i) for i in range(num_sectors)],
+                "lap_time": lap_data.get("lap_time"),
+            })
+
+    return notable_laps, current_bests
 
 
 def main():
@@ -298,6 +479,11 @@ def main():
     best_overall_time = float("inf")
     best_overall_file = None
 
+    # Track sector personal bests across all sessions
+    global_best_sectors: dict[str, dict[int, float]] = {}  # key: car, value: {sector_idx: time}
+    all_purple_laps = []  # Laps where ALL sectors were purple
+    almost_purple_laps = []  # Laps where all but 1 sector were purple
+
     for i, file_path in enumerate(files, 1):
         print(f"\r[{i}/{len(files)}] {file_path.name[:50]}...", end="", flush=True)
 
@@ -309,6 +495,66 @@ def main():
             if result["best_lap_time"] and result["best_lap_time"] < best_overall_time:
                 best_overall_time = result["best_lap_time"]
                 best_overall_file = file_path.name
+
+            # Process sector data for purple detection
+            laps_with_sectors = result.get("laps_with_sectors", {})
+            num_sectors = result.get("num_sectors", 0)
+            car = result.get("car", "Unknown")
+            is_wet = result.get("is_wet", False)
+
+            if laps_with_sectors and num_sectors > 0 and not is_wet:
+                # Initialize car's best sectors if needed
+                if car not in global_best_sectors:
+                    global_best_sectors[car] = {i: float("inf") for i in range(num_sectors)}
+
+                # Check each lap for purple sectors
+                for lap_num in sorted(laps_with_sectors.keys()):
+                    lap_data = laps_with_sectors[lap_num]
+                    sectors = lap_data.get("sectors", {})
+
+                    if len(sectors) != num_sectors:
+                        continue
+
+                    purple_count = 0
+                    purple_sectors = []
+
+                    for sector_idx in range(num_sectors):
+                        sector_time = sectors.get(sector_idx)
+                        if sector_time is None:
+                            continue
+
+                        # Check if this is a personal best for this sector
+                        if sector_time < global_best_sectors[car][sector_idx]:
+                            purple_count += 1
+                            purple_sectors.append(sector_idx)
+                            global_best_sectors[car][sector_idx] = sector_time
+
+                    # Record notable laps
+                    if purple_count == num_sectors:
+                        all_purple_laps.append({
+                            "file": file_path.name,
+                            "date": result.get("date"),
+                            "car": car,
+                            "lap": lap_num,
+                            "sector_times": [sectors.get(i) for i in range(num_sectors)],
+                            "lap_time": lap_data.get("lap_time"),
+                            "lap_time_formatted": format_lap_time(lap_data.get("lap_time")),
+                        })
+                    elif purple_count == num_sectors - 1:
+                        # Find which sector wasn't purple
+                        non_purple = [i for i in range(num_sectors) if i not in purple_sectors]
+                        almost_purple_laps.append({
+                            "file": file_path.name,
+                            "date": result.get("date"),
+                            "car": car,
+                            "lap": lap_num,
+                            "purple_sectors": purple_sectors,
+                            "missed_sector": non_purple[0] if non_purple else None,
+                            "sector_times": [sectors.get(i) for i in range(num_sectors)],
+                            "lap_time": lap_data.get("lap_time"),
+                            "lap_time_formatted": format_lap_time(lap_data.get("lap_time")),
+                        })
+
         except Exception as e:
             print(f"\nError processing {file_path.name}: {e}")
             sessions.append({"file_name": file_path.name, "error": str(e)})
@@ -487,16 +733,55 @@ def main():
 
     print(f"\n--- Total Track Time: {format_duration(total_session_time)} ---")
 
+    # Print purple sector summary
+    print(f"\n--- Purple Sector Achievements ---")
+    print(f"ALL PURPLE laps: {len(all_purple_laps)}")
+    for lap in all_purple_laps:
+        sectors_str = " | ".join([f"{t:.3f}" for t in lap["sector_times"]])
+        print(f"  {lap['date']} - {lap['car']} Lap {lap['lap']}: [{sectors_str}] = {lap['lap_time_formatted']}")
+
+    print(f"\nALMOST purple laps (1 sector off): {len(almost_purple_laps)}")
+    for lap in almost_purple_laps[-10:]:  # Show last 10
+        sectors_str = " | ".join([f"{t:.3f}" for t in lap["sector_times"]])
+        missed = lap["missed_sector"] + 1  # 1-indexed for display
+        print(f"  {lap['date']} - {lap['car']} Lap {lap['lap']}: [{sectors_str}] = {lap['lap_time_formatted']} (missed S{missed})")
+    if len(almost_purple_laps) > 10:
+        print(f"  ... and {len(almost_purple_laps) - 10} more")
+
+    # Print current best sectors per car
+    print(f"\n--- Current Best Sectors ---")
+    for car, sectors in global_best_sectors.items():
+        if all(t < float("inf") for t in sectors.values()):
+            sector_str = " | ".join([f"S{i+1}: {t:.3f}" for i, t in sectors.items()])
+            theoretical_best = sum(sectors.values())
+            print(f"  {car}: [{sector_str}] = {format_lap_time(theoretical_best)} theoretical")
+
     # Convert keys for JSON (camelCase for JS compatibility)
     def to_camel_case(data):
         if isinstance(data, dict):
-            return {
-                "".join(word.capitalize() if i > 0 else word for i, word in enumerate(k.split("_"))): to_camel_case(v)
-                for k, v in data.items()
-            }
+            result = {}
+            for k, v in data.items():
+                # Handle integer keys (like lap numbers) - keep as-is
+                if isinstance(k, int):
+                    result[k] = to_camel_case(v)
+                else:
+                    camel_key = "".join(word.capitalize() if i > 0 else word for i, word in enumerate(k.split("_")))
+                    result[camel_key] = to_camel_case(v)
+            return result
         elif isinstance(data, list):
             return [to_camel_case(item) for item in data]
         return data
+
+    # Prepare best sectors for JSON (convert to list format)
+    best_sectors_output = {}
+    for car, sectors in global_best_sectors.items():
+        if all(t < float("inf") for t in sectors.values()):
+            best_sectors_output[car] = {
+                "sectors": [sectors[i] for i in range(len(sectors))],
+                "sectorsFormatted": [f"{sectors[i]:.3f}" for i in range(len(sectors))],
+                "theoreticalBest": sum(sectors.values()),
+                "theoreticalBestFormatted": format_lap_time(sum(sectors.values())),
+            }
 
     # Save full telemetry data
     best_time_final = best_overall_time if best_overall_time < float("inf") else None
@@ -511,6 +796,11 @@ def main():
         "carStats": to_camel_case(car_stats_list),
         "dailyBests": to_camel_case(daily_bests),
         "sessions": to_camel_case([s for s in sessions if "error" not in s]),
+        "purpleSectors": {
+            "allPurpleLaps": to_camel_case(all_purple_laps),
+            "almostPurpleLaps": to_camel_case(almost_purple_laps),
+            "bestSectorsByCar": best_sectors_output,
+        },
     }
 
     output_file = OUTPUT_DIR / "telemetry-data.json"
@@ -531,6 +821,13 @@ def main():
         "bestOverallTimeFormatted": format_lap_time(best_time_final),
         "carStats": to_camel_case(car_stats_list),
         "dailyBests": to_camel_case(daily_bests),
+        "purpleSectors": {
+            "allPurpleLaps": to_camel_case(all_purple_laps),
+            "almostPurpleLaps": to_camel_case(almost_purple_laps),
+            "bestSectorsByCar": best_sectors_output,
+            "totalAllPurple": len(all_purple_laps),
+            "totalAlmostPurple": len(almost_purple_laps),
+        },
     }
 
     summary_file = OUTPUT_DIR / "summary.json"
