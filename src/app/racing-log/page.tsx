@@ -19,6 +19,8 @@ interface DailyBest {
   rangeFormatted: string | null;
   consistencyScore: number | null;
   track: string;
+  sessionTimeSeconds: number;
+  sessionTimeFormatted: string;
 }
 
 interface CarStat {
@@ -30,6 +32,8 @@ interface CarStat {
   medianTime: number | null;
   medianTimeFormatted: string | null;
   consistencyScore: number | null;
+  sessionTimeSeconds: number;
+  sessionTimeFormatted: string;
 }
 
 // Format date for display
@@ -85,12 +89,13 @@ function groupByCar(dailyBests: DailyBest[]): Record<string, DailyBest[]> {
 }
 
 export default function RacingLogPage() {
-  const { dailyBests, totalSessions, totalLaps, track, carStats } = telemetryData as {
+  const { dailyBests, totalSessions, totalLaps, track, carStats, totalTrackTimeFormatted } = telemetryData as {
     dailyBests: DailyBest[];
     totalSessions: number;
     totalLaps: number;
     track: string;
     carStats: CarStat[];
+    totalTrackTimeFormatted: string;
   };
 
   // Group daily bests by car
@@ -130,16 +135,16 @@ export default function RacingLogPage() {
           >
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div className="card p-4 text-center">
+                <div className="text-2xl font-bold text-[var(--purple-glow)]">{totalTrackTimeFormatted}</div>
+                <div className="text-sm text-[var(--foreground-muted)]">Track Time</div>
+              </div>
+              <div className="card p-4 text-center">
                 <div className="text-2xl font-bold text-[var(--purple-glow)]">{totalSessions}</div>
                 <div className="text-sm text-[var(--foreground-muted)]">Sessions</div>
               </div>
               <div className="card p-4 text-center">
                 <div className="text-2xl font-bold text-[var(--purple-glow)]">{totalLaps}</div>
                 <div className="text-sm text-[var(--foreground-muted)]">Laps Recorded</div>
-              </div>
-              <div className="card p-4 text-center">
-                <div className="text-2xl font-bold text-[var(--purple-glow)]">{carStats?.length || 0}</div>
-                <div className="text-sm text-[var(--foreground-muted)]">Cars Driven</div>
               </div>
               <div className="card p-4 text-center">
                 <div className="text-2xl font-bold text-white">{uniqueDays}</div>
@@ -198,7 +203,7 @@ export default function RacingLogPage() {
                       <div>
                         <h3 className="font-semibold text-white text-lg">{carStat.car}</h3>
                         <p className="text-sm text-[var(--foreground-muted)]">
-                          {carStat.totalSessions} sessions, {carStat.totalLaps} laps
+                          {carStat.sessionTimeFormatted} on track · {carStat.totalSessions} sessions · {carStat.totalLaps} laps
                         </p>
                       </div>
                       <div className="flex items-center gap-6">
@@ -246,7 +251,7 @@ export default function RacingLogPage() {
                             <div className="flex items-center justify-between mb-3">
                               <div className="text-sm font-medium text-white">{formatDate(day.date)}</div>
                               <div className="text-xs text-[var(--foreground-muted)]">
-                                {day.sessions} sessions, {day.totalLaps} laps
+                                {day.sessionTimeFormatted} · {day.sessions} sessions · {day.totalLaps} laps
                               </div>
                             </div>
 

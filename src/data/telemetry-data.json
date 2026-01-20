@@ -1,32 +1,37 @@
 {
-  "generated": "2026-01-19T16:11:35.783120",
+  "generated": "2026-01-19T17:05:27.887087",
   "totalSessions": 145,
   "totalLaps": 349,
+  "totalTrackTimeSeconds": 231770.21666666667,
+  "totalTrackTimeFormatted": "64:22:50",
   "bestOverallTime": 101.9094009399414,
   "bestOverallTimeFormatted": "1:41.909",
   "carStats": [
     {
       "car": "Super Formula Lights 324",
-      "totalSessions": 140,
+      "totalSessions": 145,
       "totalLaps": 348,
       "bestTime": 101.9094009399414,
       "bestTimeFormatted": "1:41.909",
+      "sessionTimeSeconds": 231770.21666666676,
       "totalLapsRaw": 348,
       "totalLapsClean": 337,
       "medianTime": 104.35209655761719,
       "medianTimeFormatted": "1:44.352",
-      "consistencyScore": 85
+      "consistencyScore": 85,
+      "sessionTimeFormatted": "64:22:50"
     }
   ],
   "dailyBests": [
     {
       "date": "2026-01-07",
       "car": "Super Formula Lights 324",
-      "sessions": 1,
+      "sessions": 2,
       "totalLaps": 5,
       "bestTime": 103.98979949951172,
       "bestTimeFormatted": "1:43.990",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 49107.78333333333,
       "totalLapsRaw": 5,
       "totalLapsClean": 5,
       "outliersFiltered": 0,
@@ -36,7 +41,8 @@
       "slowestTimeFormatted": "1:44.332",
       "range": 0.3419036865234375,
       "rangeFormatted": "0.342s",
-      "consistencyScore": 99
+      "consistencyScore": 99,
+      "sessionTimeFormatted": "13:38:27"
     },
     {
       "date": "2026-01-08",
@@ -46,6 +52,7 @@
       "bestTime": 102.39469909667969,
       "bestTimeFormatted": "1:42.395",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 4391.916666666667,
       "totalLapsRaw": 13,
       "totalLapsClean": 12,
       "outliersFiltered": 1,
@@ -55,7 +62,8 @@
       "slowestTimeFormatted": "1:55.090",
       "range": 12.694999694824219,
       "rangeFormatted": "12.695s",
-      "consistencyScore": 81
+      "consistencyScore": 81,
+      "sessionTimeFormatted": "1:13:11"
     },
     {
       "date": "2026-01-09",
@@ -65,6 +73,7 @@
       "bestTime": 102.66079711914062,
       "bestTimeFormatted": "1:42.661",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 14326.066666666666,
       "totalLapsRaw": 38,
       "totalLapsClean": 38,
       "outliersFiltered": 0,
@@ -74,7 +83,8 @@
       "slowestTimeFormatted": "1:57.007",
       "range": 14.346206665039062,
       "rangeFormatted": "14.346s",
-      "consistencyScore": 82
+      "consistencyScore": 82,
+      "sessionTimeFormatted": "3:58:46"
     },
     {
       "date": "2026-01-11",
@@ -84,6 +94,7 @@
       "bestTime": 102.38719940185547,
       "bestTimeFormatted": "1:42.387",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 8861.233333333334,
       "totalLapsRaw": 23,
       "totalLapsClean": 23,
       "outliersFiltered": 0,
@@ -93,7 +104,8 @@
       "slowestTimeFormatted": "1:57.578",
       "range": 15.191200256347656,
       "rangeFormatted": "15.191s",
-      "consistencyScore": 81
+      "consistencyScore": 81,
+      "sessionTimeFormatted": "2:27:41"
     },
     {
       "date": "2026-01-12",
@@ -103,6 +115,7 @@
       "bestTime": 102.55509948730469,
       "bestTimeFormatted": "1:42.555",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 18532.766666666666,
       "totalLapsRaw": 23,
       "totalLapsClean": 20,
       "outliersFiltered": 3,
@@ -112,7 +125,8 @@
       "slowestTimeFormatted": "1:51.879",
       "range": 9.323600769042969,
       "rangeFormatted": "9.324s",
-      "consistencyScore": 89
+      "consistencyScore": 89,
+      "sessionTimeFormatted": "5:08:52"
     },
     {
       "date": "2026-01-13",
@@ -122,6 +136,7 @@
       "bestTime": 102.01940155029297,
       "bestTimeFormatted": "1:42.019",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 13350.316666666666,
       "totalLapsRaw": 19,
       "totalLapsClean": 19,
       "outliersFiltered": 0,
@@ -131,16 +146,18 @@
       "slowestTimeFormatted": "1:57.277",
       "range": 15.257400512695312,
       "rangeFormatted": "15.257s",
-      "consistencyScore": 84
+      "consistencyScore": 84,
+      "sessionTimeFormatted": "3:42:30"
     },
     {
       "date": "2026-01-14",
       "car": "Super Formula Lights 324",
-      "sessions": 14,
+      "sessions": 15,
       "totalLaps": 28,
       "bestTime": 102.85710144042969,
       "bestTimeFormatted": "1:42.857",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 41288.1,
       "totalLapsRaw": 28,
       "totalLapsClean": 28,
       "outliersFiltered": 0,
@@ -150,7 +167,8 @@
       "slowestTimeFormatted": "1:54.038",
       "range": 11.180595397949219,
       "rangeFormatted": "11.181s",
-      "consistencyScore": 86
+      "consistencyScore": 86,
+      "sessionTimeFormatted": "11:28:08"
     },
     {
       "date": "2026-01-15",
@@ -160,6 +178,7 @@
       "bestTime": 101.9094009399414,
       "bestTimeFormatted": "1:41.909",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 12016.233333333334,
       "totalLapsRaw": 38,
       "totalLapsClean": 38,
       "outliersFiltered": 0,
@@ -169,7 +188,8 @@
       "slowestTimeFormatted": "1:50.291",
       "range": 8.381698608398438,
       "rangeFormatted": "8.382s",
-      "consistencyScore": 88
+      "consistencyScore": 88,
+      "sessionTimeFormatted": "3:20:16"
     },
     {
       "date": "2026-01-16",
@@ -179,6 +199,7 @@
       "bestTime": 104.32469940185547,
       "bestTimeFormatted": "1:44.325",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 1247.1333333333332,
       "totalLapsRaw": 4,
       "totalLapsClean": 4,
       "outliersFiltered": 0,
@@ -188,16 +209,18 @@
       "slowestTimeFormatted": "1:50.107",
       "range": 5.782798767089844,
       "rangeFormatted": "5.783s",
-      "consistencyScore": 88
+      "consistencyScore": 88,
+      "sessionTimeFormatted": "0:20:47"
     },
     {
       "date": "2026-01-17",
       "car": "Super Formula Lights 324",
-      "sessions": 45,
+      "sessions": 47,
       "totalLaps": 105,
       "bestTime": 102.19860076904297,
       "bestTimeFormatted": "1:42.199",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 38082.71666666667,
       "totalLapsRaw": 105,
       "totalLapsClean": 105,
       "outliersFiltered": 0,
@@ -207,16 +230,18 @@
       "slowestTimeFormatted": "1:56.617",
       "range": 14.41839599609375,
       "rangeFormatted": "14.418s",
-      "consistencyScore": 85
+      "consistencyScore": 85,
+      "sessionTimeFormatted": "10:34:42"
     },
     {
       "date": "2026-01-18",
       "car": "Super Formula Lights 324",
-      "sessions": 17,
+      "sessions": 18,
       "totalLaps": 19,
       "bestTime": 102.47200012207031,
       "bestTimeFormatted": "1:42.472",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 11650.016666666666,
       "totalLapsRaw": 19,
       "totalLapsClean": 19,
       "outliersFiltered": 0,
@@ -226,7 +251,8 @@
       "slowestTimeFormatted": "1:50.783",
       "range": 8.310699462890625,
       "rangeFormatted": "8.311s",
-      "consistencyScore": 87
+      "consistencyScore": 87,
+      "sessionTimeFormatted": "3:14:10"
     },
     {
       "date": "2026-01-19",
@@ -236,6 +262,7 @@
       "bestTime": 102.04389953613281,
       "bestTimeFormatted": "1:42.044",
       "track": "Autodromo Nazionale Monza",
+      "sessionTimeSeconds": 18915.933333333334,
       "totalLapsRaw": 33,
       "totalLapsClean": 28,
       "outliersFiltered": 5,
@@ -245,7 +272,8 @@
       "slowestTimeFormatted": "1:56.593",
       "range": 14.549003601074219,
       "rangeFormatted": "14.549s",
-      "consistencyScore": 84
+      "consistencyScore": 84,
+      "sessionTimeFormatted": "5:15:15"
     }
   ],
   "sessions": [
@@ -290,7 +318,29 @@
       ],
       "bestLapTime": 103.98979949951172,
       "bestLapTimeFormatted": "1:43.990",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 2471.55,
+      "sessionDurationFormatted": "0:41:11"
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-07 19-55-31.ibt",
+      "date": "2026-01-07",
+      "time": "19:55:31",
+      "datetime": "2026-01-07T19:55:31",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "precipitation": 0,
+      "skies": "Dynamic",
+      "isWet": false,
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0,
+      "sessionDurationSeconds": 46636.23333333333,
+      "sessionDurationFormatted": "12:57:16",
+      "estimated": true
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-03-42.ibt",
@@ -313,7 +363,9 @@
       ],
       "bestLapTime": 115.0896987915039,
       "bestLapTimeFormatted": "1:55.090",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 267.4166666666667,
+      "sessionDurationFormatted": "0:04:27"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-08-17.ibt",
@@ -330,7 +382,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 19.583333333333332,
+      "sessionDurationFormatted": "0:00:19"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-08-44.ibt",
@@ -347,7 +401,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 154.85,
+      "sessionDurationFormatted": "0:02:34"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-11-26.ibt",
@@ -370,7 +426,9 @@
       ],
       "bestLapTime": 111.84030151367188,
       "bestLapTimeFormatted": "1:51.840",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 281.56666666666666,
+      "sessionDurationFormatted": "0:04:41"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-16-15.ibt",
@@ -387,7 +445,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 79.51666666666667,
+      "sessionDurationFormatted": "0:01:19"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-17-42.ibt",
@@ -404,7 +464,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 8.816666666666666,
+      "sessionDurationFormatted": "0:00:08"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-18-12.ibt",
@@ -421,7 +483,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 231.01666666666668,
+      "sessionDurationFormatted": "0:03:51"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-22-10.ibt",
@@ -438,7 +502,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 70.01666666666667,
+      "sessionDurationFormatted": "0:01:10"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-23-27.ibt",
@@ -461,7 +527,9 @@
       ],
       "bestLapTime": 110.29239654541016,
       "bestLapTimeFormatted": "1:50.292",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 299.73333333333335,
+      "sessionDurationFormatted": "0:04:59"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-28-34.ibt",
@@ -478,7 +546,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 181.51666666666668,
+      "sessionDurationFormatted": "0:03:01"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-31-43.ibt",
@@ -506,7 +576,9 @@
       ],
       "bestLapTime": 106.18299865722656,
       "bestLapTimeFormatted": "1:46.183",
-      "totalLaps": 2
+      "totalLaps": 2,
+      "sessionDurationSeconds": 382.6166666666667,
+      "sessionDurationFormatted": "0:06:22"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-08 22-40-32.ibt",
@@ -564,7 +636,9 @@
       ],
       "bestLapTime": 102.39469909667969,
       "bestLapTimeFormatted": "1:42.395",
-      "totalLaps": 8
+      "totalLaps": 8,
+      "sessionDurationSeconds": 2415.266666666667,
+      "sessionDurationFormatted": "0:40:15"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-09 11-29-39.ibt",
@@ -667,7 +741,9 @@
       ],
       "bestLapTime": 102.73760223388672,
       "bestLapTimeFormatted": "1:42.738",
-      "totalLaps": 17
+      "totalLaps": 17,
+      "sessionDurationSeconds": 4272.566666666667,
+      "sessionDurationFormatted": "1:11:12"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-09 13-39-17.ibt",
@@ -690,7 +766,9 @@
       ],
       "bestLapTime": 105.24189758300781,
       "bestLapTimeFormatted": "1:45.242",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 282.48333333333335,
+      "sessionDurationFormatted": "0:04:42"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-09 13-44-06.ibt",
@@ -713,7 +791,9 @@
       ],
       "bestLapTime": 104.96710205078125,
       "bestLapTimeFormatted": "1:44.967",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 285.25,
+      "sessionDurationFormatted": "0:04:45"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-09 13-48-59.ibt",
@@ -756,7 +836,9 @@
       ],
       "bestLapTime": 104.24369812011719,
       "bestLapTimeFormatted": "1:44.244",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 684.3166666666667,
+      "sessionDurationFormatted": "0:11:24"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-09 14-00-51.ibt",
@@ -773,7 +855,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 75.26666666666667,
+      "sessionDurationFormatted": "0:01:15"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-09 14-02-13.ibt",
@@ -836,7 +920,9 @@
       ],
       "bestLapTime": 104.72010040283203,
       "bestLapTimeFormatted": "1:44.720",
-      "totalLaps": 9
+      "totalLaps": 9,
+      "sessionDurationSeconds": 1110.8166666666666,
+      "sessionDurationFormatted": "0:18:30"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-09 14-43-46.ibt",
@@ -879,7 +965,9 @@
       ],
       "bestLapTime": 102.66079711914062,
       "bestLapTimeFormatted": "1:42.661",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 7594.933333333333,
+      "sessionDurationFormatted": "2:06:34"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-09 17-06-22.ibt",
@@ -896,7 +984,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 20.433333333333334,
+      "sessionDurationFormatted": "0:00:20"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-11 18-30-01.ibt",
@@ -964,7 +1054,9 @@
       ],
       "bestLapTime": 102.38719940185547,
       "bestLapTimeFormatted": "1:42.387",
-      "totalLaps": 10
+      "totalLaps": 10,
+      "sessionDurationSeconds": 6207.383333333333,
+      "sessionDurationFormatted": "1:43:27"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-11 23-11-41.ibt",
@@ -981,7 +1073,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 153.5,
+      "sessionDurationFormatted": "0:02:33"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-11 23-14-31.ibt",
@@ -1034,7 +1128,9 @@
       ],
       "bestLapTime": 104.51470184326172,
       "bestLapTimeFormatted": "1:44.515",
-      "totalLaps": 7
+      "totalLaps": 7,
+      "sessionDurationSeconds": 893.8,
+      "sessionDurationFormatted": "0:14:53"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-11 23-29-32.ibt",
@@ -1051,7 +1147,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 93.85,
+      "sessionDurationFormatted": "0:01:33"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-11 23-31-13.ibt",
@@ -1074,7 +1172,9 @@
       ],
       "bestLapTime": 106.57319641113281,
       "bestLapTimeFormatted": "1:46.573",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 472.5,
+      "sessionDurationFormatted": "0:07:52"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-11 23-39-13.ibt",
@@ -1091,7 +1191,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 85.35,
+      "sessionDurationFormatted": "0:01:25"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-11 23-40-45.ibt",
@@ -1108,7 +1210,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 191.01666666666668,
+      "sessionDurationFormatted": "0:03:11"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-11 23-44-03.ibt",
@@ -1125,7 +1229,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 48.68333333333333,
+      "sessionDurationFormatted": "0:00:48"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-11 23-44-59.ibt",
@@ -1168,7 +1274,9 @@
       ],
       "bestLapTime": 105.61869812011719,
       "bestLapTimeFormatted": "1:45.619",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 715.15,
+      "sessionDurationFormatted": "0:11:55"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-12 00-02-31.ibt",
@@ -1231,7 +1339,9 @@
       ],
       "bestLapTime": 104.08570098876953,
       "bestLapTimeFormatted": "1:44.086",
-      "totalLaps": 9
+      "totalLaps": 9,
+      "sessionDurationSeconds": 1121.3166666666666,
+      "sessionDurationFormatted": "0:18:41"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-12 00-21-23.ibt",
@@ -1248,7 +1358,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 193.35,
+      "sessionDurationFormatted": "0:03:13"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-12 00-24-44.ibt",
@@ -1265,7 +1377,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 67.4,
+      "sessionDurationFormatted": "0:01:07"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-12 00-49-01.ibt",
@@ -1323,7 +1437,9 @@
       ],
       "bestLapTime": 102.55509948730469,
       "bestLapTimeFormatted": "1:42.555",
-      "totalLaps": 8
+      "totalLaps": 8,
+      "sessionDurationSeconds": 2442.6,
+      "sessionDurationFormatted": "0:40:42"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-12 01-30-59.ibt",
@@ -1351,7 +1467,9 @@
       ],
       "bestLapTime": 102.55509948730469,
       "bestLapTimeFormatted": "1:42.555",
-      "totalLaps": 2
+      "totalLaps": 2,
+      "sessionDurationSeconds": 4197.0,
+      "sessionDurationFormatted": "1:09:57"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-12 07-19-32.ibt",
@@ -1384,7 +1502,9 @@
       ],
       "bestLapTime": 102.65049743652344,
       "bestLapTimeFormatted": "1:42.650",
-      "totalLaps": 3
+      "totalLaps": 3,
+      "sessionDurationSeconds": 8653.066666666668,
+      "sessionDurationFormatted": "2:24:13"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-12 21-49-56.ibt",
@@ -1401,7 +1521,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 17.316666666666666,
+      "sessionDurationFormatted": "0:00:17"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-12 21-52-27.ibt",
@@ -1424,7 +1546,9 @@
       ],
       "bestLapTime": 109.29989624023438,
       "bestLapTimeFormatted": "1:49.300",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 1840.7166666666667,
+      "sessionDurationFormatted": "0:30:40"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-13 07-39-31.ibt",
@@ -1467,7 +1591,9 @@
       ],
       "bestLapTime": 102.74970245361328,
       "bestLapTimeFormatted": "1:42.750",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 7960.616666666667,
+      "sessionDurationFormatted": "2:12:40"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-13 22-43-14.ibt",
@@ -1555,7 +1681,9 @@
       ],
       "bestLapTime": 102.01940155029297,
       "bestLapTimeFormatted": "1:42.019",
-      "totalLaps": 14
+      "totalLaps": 14,
+      "sessionDurationSeconds": 5389.7,
+      "sessionDurationFormatted": "1:29:49"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 07-02-26.ibt",
@@ -1618,7 +1746,9 @@
       ],
       "bestLapTime": 102.85710144042969,
       "bestLapTimeFormatted": "1:42.857",
-      "totalLaps": 9
+      "totalLaps": 9,
+      "sessionDurationSeconds": 1089.1,
+      "sessionDurationFormatted": "0:18:09"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 07-36-36.ibt",
@@ -1635,7 +1765,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 44.483333333333334,
+      "sessionDurationFormatted": "0:00:44"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 07-37-27.ibt",
@@ -1652,7 +1784,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 43.016666666666666,
+      "sessionDurationFormatted": "0:00:43"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 07-38-17.ibt",
@@ -1705,7 +1839,9 @@
       ],
       "bestLapTime": 103.12059783935547,
       "bestLapTimeFormatted": "1:43.121",
-      "totalLaps": 7
+      "totalLaps": 7,
+      "sessionDurationSeconds": 916.9833333333333,
+      "sessionDurationFormatted": "0:15:16"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 09-26-47.ibt",
@@ -1722,7 +1858,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 57.3,
+      "sessionDurationFormatted": "0:00:57"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 09-27-52.ibt",
@@ -1739,7 +1877,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 68.01666666666667,
+      "sessionDurationFormatted": "0:01:08"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 09-29-06.ibt",
@@ -1756,7 +1896,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 117.85,
+      "sessionDurationFormatted": "0:01:57"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 09-31-11.ibt",
@@ -1773,7 +1915,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 26.116666666666667,
+      "sessionDurationFormatted": "0:00:26"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 09-31-44.ibt",
@@ -1801,7 +1945,9 @@
       ],
       "bestLapTime": 105.50920104980469,
       "bestLapTimeFormatted": "1:45.509",
-      "totalLaps": 2
+      "totalLaps": 2,
+      "sessionDurationSeconds": 843.8166666666667,
+      "sessionDurationFormatted": "0:14:03"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 09-45-51.ibt",
@@ -1818,7 +1964,9 @@
       "laps": [],
       "bestLapTime": 105.50920104980469,
       "bestLapTimeFormatted": "1:45.509",
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 5.333333333333333,
+      "sessionDurationFormatted": "0:00:05"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 09-46-03.ibt",
@@ -1835,7 +1983,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 151.01666666666668,
+      "sessionDurationFormatted": "0:02:31"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 09-48-41.ibt",
@@ -1863,7 +2013,9 @@
       ],
       "bestLapTime": 105.5634994506836,
       "bestLapTimeFormatted": "1:45.563",
-      "totalLaps": 2
+      "totalLaps": 2,
+      "sessionDurationSeconds": 365.26666666666665,
+      "sessionDurationFormatted": "0:06:05"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 22-35-37.ibt",
@@ -1880,7 +2032,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 170.91666666666666,
+      "sessionDurationFormatted": "0:02:50"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-14 22-38-36.ibt",
@@ -1938,7 +2092,29 @@
       ],
       "bestLapTime": 103.39299774169922,
       "bestLapTimeFormatted": "1:43.393",
-      "totalLaps": 8
+      "totalLaps": 8,
+      "sessionDurationSeconds": 1068.3166666666666,
+      "sessionDurationFormatted": "0:17:48"
+    },
+    {
+      "fileName": "superformulalights324_monza full 2026-01-14 22-58-17.ibt",
+      "date": "2026-01-14",
+      "time": "22:58:17",
+      "datetime": "2026-01-14T22:58:17",
+      "track": "Autodromo Nazionale Monza",
+      "trackShort": "Monza Full",
+      "car": "Super Formula Lights 324",
+      "driver": "Russell Adams7",
+      "precipitation": 0,
+      "skies": "Dynamic",
+      "isWet": false,
+      "laps": [],
+      "bestLapTime": null,
+      "bestLapTimeFormatted": null,
+      "totalLaps": 0,
+      "sessionDurationSeconds": 36320.566666666666,
+      "sessionDurationFormatted": "10:05:20",
+      "estimated": true
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 10-29-44.ibt",
@@ -1981,7 +2157,9 @@
       ],
       "bestLapTime": 101.9094009399414,
       "bestLapTimeFormatted": "1:41.909",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 1192.95,
+      "sessionDurationFormatted": "0:19:52"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 12-11-09.ibt",
@@ -2054,7 +2232,9 @@
       ],
       "bestLapTime": 101.99310302734375,
       "bestLapTimeFormatted": "1:41.993",
-      "totalLaps": 11
+      "totalLaps": 11,
+      "sessionDurationSeconds": 5228.566666666667,
+      "sessionDurationFormatted": "1:27:08"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 13-43-02.ibt",
@@ -2071,7 +2251,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 191.63333333333333,
+      "sessionDurationFormatted": "0:03:11"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 13-46-20.ibt",
@@ -2088,7 +2270,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 22.15,
+      "sessionDurationFormatted": "0:00:22"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 13-46-50.ibt",
@@ -2105,7 +2289,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 67.85,
+      "sessionDurationFormatted": "0:01:07"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 13-48-04.ibt",
@@ -2122,7 +2308,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 230.51666666666668,
+      "sessionDurationFormatted": "0:03:50"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 13-52-17.ibt",
@@ -2170,7 +2358,9 @@
       ],
       "bestLapTime": 103.39140319824219,
       "bestLapTimeFormatted": "1:43.391",
-      "totalLaps": 6
+      "totalLaps": 6,
+      "sessionDurationSeconds": 821.0833333333334,
+      "sessionDurationFormatted": "0:13:41"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 14-06-05.ibt",
@@ -2213,7 +2403,9 @@
       ],
       "bestLapTime": 103.7031021118164,
       "bestLapTimeFormatted": "1:43.703",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 701.65,
+      "sessionDurationFormatted": "0:11:41"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 14-18-16.ibt",
@@ -2230,7 +2422,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 37.833333333333336,
+      "sessionDurationFormatted": "0:00:37"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 14-19-01.ibt",
@@ -2258,7 +2452,9 @@
       ],
       "bestLapTime": 106.77680206298828,
       "bestLapTimeFormatted": "1:46.777",
-      "totalLaps": 2
+      "totalLaps": 2,
+      "sessionDurationSeconds": 370.3666666666667,
+      "sessionDurationFormatted": "0:06:10"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 14-26-00.ibt",
@@ -2286,7 +2482,9 @@
       ],
       "bestLapTime": 109.75370025634766,
       "bestLapTimeFormatted": "1:49.754",
-      "totalLaps": 2
+      "totalLaps": 2,
+      "sessionDurationSeconds": 221.68333333333334,
+      "sessionDurationFormatted": "0:03:41"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-15 16-22-01.ibt",
@@ -2339,7 +2537,9 @@
       ],
       "bestLapTime": 102.16020202636719,
       "bestLapTimeFormatted": "1:42.160",
-      "totalLaps": 7
+      "totalLaps": 7,
+      "sessionDurationSeconds": 2929.95,
+      "sessionDurationFormatted": "0:48:49"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-16 23-38-02.ibt",
@@ -2372,7 +2572,9 @@
       ],
       "bestLapTime": 104.32469940185547,
       "bestLapTimeFormatted": "1:44.325",
-      "totalLaps": 3
+      "totalLaps": 3,
+      "sessionDurationSeconds": 737.55,
+      "sessionDurationFormatted": "0:12:17"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-16 23-50-57.ibt",
@@ -2395,7 +2597,9 @@
       ],
       "bestLapTime": 105.1395034790039,
       "bestLapTimeFormatted": "1:45.140",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 411.23333333333335,
+      "sessionDurationFormatted": "0:06:51"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-16 23-58-28.ibt",
@@ -2412,7 +2616,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 98.35,
+      "sessionDurationFormatted": "0:01:38"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 00-32-01.ibt",
@@ -2429,7 +2635,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 1424.5833333333333,
+      "sessionDurationFormatted": "0:23:44"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 00-59-33.ibt",
@@ -2487,7 +2695,9 @@
       ],
       "bestLapTime": 102.36810302734375,
       "bestLapTimeFormatted": "1:42.368",
-      "totalLaps": 8
+      "totalLaps": 8,
+      "sessionDurationSeconds": 2890.15,
+      "sessionDurationFormatted": "0:48:10"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-09-16.ibt",
@@ -2504,7 +2714,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 58.96666666666667,
+      "sessionDurationFormatted": "0:00:58"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-10-33.ibt",
@@ -2521,7 +2733,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 16.066666666666666,
+      "sessionDurationFormatted": "0:00:16"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-10-56.ibt",
@@ -2538,7 +2752,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 174.68333333333334,
+      "sessionDurationFormatted": "0:02:54"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-13-57.ibt",
@@ -2555,7 +2771,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 67.35,
+      "sessionDurationFormatted": "0:01:07"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-15-11.ibt",
@@ -2572,7 +2790,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 36.18333333333333,
+      "sessionDurationFormatted": "0:00:36"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-15-54.ibt",
@@ -2620,7 +2840,9 @@
       ],
       "bestLapTime": 104.83380126953125,
       "bestLapTimeFormatted": "1:44.834",
-      "totalLaps": 6
+      "totalLaps": 6,
+      "sessionDurationSeconds": 851.9833333333333,
+      "sessionDurationFormatted": "0:14:11"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-31-05.ibt",
@@ -2637,7 +2859,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 84.15,
+      "sessionDurationFormatted": "0:01:24"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-32-35.ibt",
@@ -2654,7 +2878,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 46.016666666666666,
+      "sessionDurationFormatted": "0:00:46"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-33-28.ibt",
@@ -2671,7 +2897,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 153.35,
+      "sessionDurationFormatted": "0:02:33"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-36-08.ibt",
@@ -2704,7 +2932,9 @@
       ],
       "bestLapTime": 104.29440307617188,
       "bestLapTimeFormatted": "1:44.294",
-      "totalLaps": 3
+      "totalLaps": 3,
+      "sessionDurationSeconds": 501.76666666666665,
+      "sessionDurationFormatted": "0:08:21"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-44-36.ibt",
@@ -2721,7 +2951,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 155.51666666666668,
+      "sessionDurationFormatted": "0:02:35"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-47-19.ibt",
@@ -2738,7 +2970,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 58.88333333333333,
+      "sessionDurationFormatted": "0:00:58"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-48-24.ibt",
@@ -2755,7 +2989,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 405.81666666666666,
+      "sessionDurationFormatted": "0:06:45"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 09-55-16.ibt",
@@ -2778,7 +3014,9 @@
       ],
       "bestLapTime": 106.77110290527344,
       "bestLapTimeFormatted": "1:46.771",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 348.75,
+      "sessionDurationFormatted": "0:05:48"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 10-01-11.ibt",
@@ -2821,7 +3059,9 @@
       ],
       "bestLapTime": 104.26090240478516,
       "bestLapTimeFormatted": "1:44.261",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 767.65,
+      "sessionDurationFormatted": "0:12:47"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 10-14-05.ibt",
@@ -2838,7 +3078,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 236.18333333333334,
+      "sessionDurationFormatted": "0:03:56"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 10-18-08.ibt",
@@ -2891,7 +3133,9 @@
       ],
       "bestLapTime": 104.60579681396484,
       "bestLapTimeFormatted": "1:44.606",
-      "totalLaps": 7
+      "totalLaps": 7,
+      "sessionDurationSeconds": 937.4833333333333,
+      "sessionDurationFormatted": "0:15:37"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 10-33-52.ibt",
@@ -2908,7 +3152,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 42.85,
+      "sessionDurationFormatted": "0:00:42"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 10-34-41.ibt",
@@ -2925,7 +3171,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 104.5,
+      "sessionDurationFormatted": "0:01:44"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 10-36-33.ibt",
@@ -2968,7 +3216,9 @@
       ],
       "bestLapTime": 105.51499938964844,
       "bestLapTimeFormatted": "1:45.515",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 723.3166666666667,
+      "sessionDurationFormatted": "0:12:03"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 10-48-47.ibt",
@@ -3001,7 +3251,9 @@
       ],
       "bestLapTime": 104.02210235595703,
       "bestLapTimeFormatted": "1:44.022",
-      "totalLaps": 3
+      "totalLaps": 3,
+      "sessionDurationSeconds": 495.4166666666667,
+      "sessionDurationFormatted": "0:08:15"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 10-57-09.ibt",
@@ -3018,7 +3270,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 109.18333333333334,
+      "sessionDurationFormatted": "0:01:49"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 10-59-04.ibt",
@@ -3051,7 +3305,9 @@
       ],
       "bestLapTime": 104.35399627685547,
       "bestLapTimeFormatted": "1:44.354",
-      "totalLaps": 3
+      "totalLaps": 3,
+      "sessionDurationSeconds": 474.56666666666666,
+      "sessionDurationFormatted": "0:07:54"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-07-05.ibt",
@@ -3089,7 +3345,9 @@
       ],
       "bestLapTime": 104.51069641113281,
       "bestLapTimeFormatted": "1:44.511",
-      "totalLaps": 4
+      "totalLaps": 4,
+      "sessionDurationSeconds": 604.3166666666667,
+      "sessionDurationFormatted": "0:10:04"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-17-59.ibt",
@@ -3106,7 +3364,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 187.18333333333334,
+      "sessionDurationFormatted": "0:03:07"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-21-13.ibt",
@@ -3123,7 +3383,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 219.51666666666668,
+      "sessionDurationFormatted": "0:03:39"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-24-59.ibt",
@@ -3161,7 +3423,9 @@
       ],
       "bestLapTime": 104.92070007324219,
       "bestLapTimeFormatted": "1:44.921",
-      "totalLaps": 4
+      "totalLaps": 4,
+      "sessionDurationSeconds": 601.3166666666667,
+      "sessionDurationFormatted": "0:10:01"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-35-07.ibt",
@@ -3178,7 +3442,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 47.35,
+      "sessionDurationFormatted": "0:00:47"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-36-00.ibt",
@@ -3195,7 +3461,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 75.01666666666667,
+      "sessionDurationFormatted": "0:01:15"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-37-22.ibt",
@@ -3212,7 +3480,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 84.51666666666667,
+      "sessionDurationFormatted": "0:01:24"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-38-52.ibt",
@@ -3229,7 +3499,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 65.35,
+      "sessionDurationFormatted": "0:01:05"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-40-04.ibt",
@@ -3257,7 +3529,9 @@
       ],
       "bestLapTime": 106.66570281982422,
       "bestLapTimeFormatted": "1:46.666",
-      "totalLaps": 2
+      "totalLaps": 2,
+      "sessionDurationSeconds": 383.71666666666664,
+      "sessionDurationFormatted": "0:06:23"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-46-34.ibt",
@@ -3274,7 +3548,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 186.18333333333334,
+      "sessionDurationFormatted": "0:03:06"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 11-49-47.ibt",
@@ -3327,7 +3603,9 @@
       ],
       "bestLapTime": 104.14869689941406,
       "bestLapTimeFormatted": "1:44.149",
-      "totalLaps": 7
+      "totalLaps": 7,
+      "sessionDurationSeconds": 888.9666666666667,
+      "sessionDurationFormatted": "0:14:48"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 12-17-48.ibt",
@@ -3344,7 +3622,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 73.18333333333334,
+      "sessionDurationFormatted": "0:01:13"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 12-19-09.ibt",
@@ -3367,7 +3647,9 @@
       ],
       "bestLapTime": 112.07630157470703,
       "bestLapTimeFormatted": "1:52.076",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 301.78333333333336,
+      "sessionDurationFormatted": "0:05:01"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 12-24-18.ibt",
@@ -3430,7 +3712,9 @@
       ],
       "bestLapTime": 103.69339752197266,
       "bestLapTimeFormatted": "1:43.693",
-      "totalLaps": 9
+      "totalLaps": 9,
+      "sessionDurationSeconds": 1083.65,
+      "sessionDurationFormatted": "0:18:03"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 12-59-40.ibt",
@@ -3447,7 +3731,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 753.5833333333334,
+      "sessionDurationFormatted": "0:12:33"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 13-12-28.ibt",
@@ -3464,7 +3750,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 290.8333333333333,
+      "sessionDurationFormatted": "0:04:50"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 13-19-22.ibt",
@@ -3487,7 +3775,9 @@
       ],
       "bestLapTime": 135.48609924316406,
       "bestLapTimeFormatted": "2:15.486",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 1078.4166666666667,
+      "sessionDurationFormatted": "0:17:58"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 13-39-24.ibt",
@@ -3590,7 +3880,9 @@
       ],
       "bestLapTime": 102.19860076904297,
       "bestLapTimeFormatted": "1:42.199",
-      "totalLaps": 17
+      "totalLaps": 17,
+      "sessionDurationSeconds": 16737.433333333334,
+      "sessionDurationFormatted": "4:38:57"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 18-20-35.ibt",
@@ -3648,7 +3940,9 @@
       ],
       "bestLapTime": 102.44110107421875,
       "bestLapTimeFormatted": "1:42.441",
-      "totalLaps": 8
+      "totalLaps": 8,
+      "sessionDurationSeconds": 1585.2666666666667,
+      "sessionDurationFormatted": "0:26:25"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 18-48-56.ibt",
@@ -3681,7 +3975,9 @@
       ],
       "bestLapTime": 104.77529907226562,
       "bestLapTimeFormatted": "1:44.775",
-      "totalLaps": 3
+      "totalLaps": 3,
+      "sessionDurationSeconds": 537.1,
+      "sessionDurationFormatted": "0:08:57"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 18-57-59.ibt",
@@ -3698,7 +3994,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 45.35,
+      "sessionDurationFormatted": "0:00:45"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-17 18-58-51.ibt",
@@ -3761,7 +4059,9 @@
       ],
       "bestLapTime": 103.86479949951172,
       "bestLapTimeFormatted": "1:43.865",
-      "totalLaps": 9
+      "totalLaps": 9,
+      "sessionDurationSeconds": 1087.3166666666666,
+      "sessionDurationFormatted": "0:18:07"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 07-14-21.ibt",
@@ -3778,7 +4078,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 39.15,
+      "sessionDurationFormatted": "0:00:39"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 07-15-08.ibt",
@@ -3795,7 +4097,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 41.7,
+      "sessionDurationFormatted": "0:00:41"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 07-15-56.ibt",
@@ -3838,7 +4142,9 @@
       ],
       "bestLapTime": 105.17949676513672,
       "bestLapTimeFormatted": "1:45.179",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 684.8166666666667,
+      "sessionDurationFormatted": "0:11:24"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 07-53-14.ibt",
@@ -3876,7 +4182,9 @@
       ],
       "bestLapTime": 102.47200012207031,
       "bestLapTimeFormatted": "1:42.472",
-      "totalLaps": 4
+      "totalLaps": 4,
+      "sessionDurationSeconds": 7739.4,
+      "sessionDurationFormatted": "2:08:59"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 12-08-50.ibt",
@@ -3893,7 +4201,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 181.31666666666666,
+      "sessionDurationFormatted": "0:03:01"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 12-11-57.ibt",
@@ -3910,7 +4220,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 48.016666666666666,
+      "sessionDurationFormatted": "0:00:48"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 12-12-52.ibt",
@@ -3938,7 +4250,9 @@
       ],
       "bestLapTime": 105.33830261230469,
       "bestLapTimeFormatted": "1:45.338",
-      "totalLaps": 2
+      "totalLaps": 2,
+      "sessionDurationSeconds": 449.9166666666667,
+      "sessionDurationFormatted": "0:07:29"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 12-20-28.ibt",
@@ -3976,7 +4290,9 @@
       ],
       "bestLapTime": 104.40190124511719,
       "bestLapTimeFormatted": "1:44.402",
-      "totalLaps": 4
+      "totalLaps": 4,
+      "sessionDurationSeconds": 568.8166666666667,
+      "sessionDurationFormatted": "0:09:28"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 17-59-52.ibt",
@@ -3993,7 +4309,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 48.516666666666666,
+      "sessionDurationFormatted": "0:00:48"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 18-00-48.ibt",
@@ -4010,7 +4328,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 41.7,
+      "sessionDurationFormatted": "0:00:41"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 18-01-36.ibt",
@@ -4027,7 +4347,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 89.68333333333334,
+      "sessionDurationFormatted": "0:01:29"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 18-03-12.ibt",
@@ -4044,7 +4366,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 233.85,
+      "sessionDurationFormatted": "0:03:53"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 18-07-12.ibt",
@@ -4061,7 +4385,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 78.51666666666667,
+      "sessionDurationFormatted": "0:01:18"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 18-08-37.ibt",
@@ -4078,7 +4404,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 183.01666666666668,
+      "sessionDurationFormatted": "0:03:03"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 18-11-46.ibt",
@@ -4095,7 +4423,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 175.51666666666668,
+      "sessionDurationFormatted": "0:02:55"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 18-14-48.ibt",
@@ -4118,7 +4448,9 @@
       ],
       "bestLapTime": 110.78269958496094,
       "bestLapTimeFormatted": "1:50.783",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 281.6,
+      "sessionDurationFormatted": "0:04:41"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 18-19-36.ibt",
@@ -4151,7 +4483,9 @@
       ],
       "bestLapTime": 104.35209655761719,
       "bestLapTimeFormatted": "1:44.352",
-      "totalLaps": 3
+      "totalLaps": 3,
+      "sessionDurationSeconds": 496.56666666666666,
+      "sessionDurationFormatted": "0:08:16"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-18 18-32-11.ibt",
@@ -4168,7 +4502,9 @@
       "laps": [],
       "bestLapTime": null,
       "bestLapTimeFormatted": null,
-      "totalLaps": 0
+      "totalLaps": 0,
+      "sessionDurationSeconds": 267.9166666666667,
+      "sessionDurationFormatted": "0:04:27"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-19 08-51-26.ibt",
@@ -4211,7 +4547,9 @@
       ],
       "bestLapTime": 102.96549987792969,
       "bestLapTimeFormatted": "1:42.965",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 1695.45,
+      "sessionDurationFormatted": "0:28:15"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-19 09-23-16.ibt",
@@ -4254,7 +4592,9 @@
       ],
       "bestLapTime": 105.27839660644531,
       "bestLapTimeFormatted": "1:45.278",
-      "totalLaps": 5
+      "totalLaps": 5,
+      "sessionDurationSeconds": 1267.7833333333333,
+      "sessionDurationFormatted": "0:21:07"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-19 09-44-44.ibt",
@@ -4277,7 +4617,9 @@
       ],
       "bestLapTime": 105.27839660644531,
       "bestLapTimeFormatted": "1:45.278",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 50.96666666666667,
+      "sessionDurationFormatted": "0:00:50"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-19 09-45-45.ibt",
@@ -4300,7 +4642,9 @@
       ],
       "bestLapTime": 105.27839660644531,
       "bestLapTimeFormatted": "1:45.278",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 13.733333333333333,
+      "sessionDurationFormatted": "0:00:13"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-19 09-49-52.ibt",
@@ -4333,7 +4677,9 @@
       ],
       "bestLapTime": 104.09449768066406,
       "bestLapTimeFormatted": "1:44.094",
-      "totalLaps": 3
+      "totalLaps": 3,
+      "sessionDurationSeconds": 645.7666666666667,
+      "sessionDurationFormatted": "0:10:45"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-19 10-02-32.ibt",
@@ -4356,7 +4702,9 @@
       ],
       "bestLapTime": 107.30840301513672,
       "bestLapTimeFormatted": "1:47.308",
-      "totalLaps": 1
+      "totalLaps": 1,
+      "sessionDurationSeconds": 3379.383333333333,
+      "sessionDurationFormatted": "0:56:19"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-19 11-12-11.ibt",
@@ -4394,7 +4742,9 @@
       ],
       "bestLapTime": 104.00550079345703,
       "bestLapTimeFormatted": "1:44.006",
-      "totalLaps": 4
+      "totalLaps": 4,
+      "sessionDurationSeconds": 4698.433333333333,
+      "sessionDurationFormatted": "1:18:18"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-19 12-49-09.ibt",
@@ -4442,7 +4792,9 @@
       ],
       "bestLapTime": 102.41909790039062,
       "bestLapTimeFormatted": "1:42.419",
-      "totalLaps": 6
+      "totalLaps": 6,
+      "sessionDurationSeconds": 4466.8,
+      "sessionDurationFormatted": "1:14:26"
     },
     {
       "fileName": "superformulalights324_monza full 2026-01-19 14-51-19.ibt",
@@ -4495,7 +4847,9 @@
       ],
       "bestLapTime": 102.04389953613281,
       "bestLapTimeFormatted": "1:42.044",
-      "totalLaps": 7
+      "totalLaps": 7,
+      "sessionDurationSeconds": 2697.616666666667,
+      "sessionDurationFormatted": "0:44:57"
     }
   ]
 }

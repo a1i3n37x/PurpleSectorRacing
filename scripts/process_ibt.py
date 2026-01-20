@@ -118,6 +118,16 @@ def format_lap_time(seconds: Optional[float]) -> Optional[str]:
     return f"{mins}:{secs:06.3f}"
 
 
+def format_duration(seconds: float) -> str:
+    """Format duration in seconds to H:MM:SS format."""
+    if seconds <= 0:
+        return "0:00:00"
+    hours = int(seconds // 3600)
+    mins = int((seconds % 3600) // 60)
+    secs = int(seconds % 60)
+    return f"{hours}:{mins:02d}:{secs:02d}"
+
+
 def calculate_consistency_score(times: list[float]) -> Optional[int]:
     """
     Calculate consistency score (0-100) based on coefficient of variation.
@@ -147,15 +157,51 @@ def filter_outlier_laps(lap_times: list[float], best_time: float) -> list[float]
     return [t for t in lap_times if t <= threshold]
 
 
+def estimate_large_file_duration(file_path: Path) -> dict:
+    """Estimate session duration from a large file by reading only the header."""
+    filename = file_path.name
+    date_info = parse_date_from_filename(filename)
+    file_size = file_path.stat().st_size
+
+    with open(file_path, "rb") as f:
+        header_data = f.read(500000)  # Read enough for header + session info
+
+    header = parse_ibt_header(header_data)
+    session_info = extract_session_info(header_data, header["session_info_offset"], header["session_info_len"])
+
+    # Estimate duration from file size
+    tick_rate = header["tick_rate"]
+    buf_len = header["buf_len"]
+    buf_offset = header["buf_offset"]
+    data_size = file_size - buf_offset
+    estimated_samples = data_size // buf_len
+    session_duration_seconds = estimated_samples / tick_rate if tick_rate > 0 else 0
+
+    return {
+        "file_name": filename,
+        "date": date_info["date"] if date_info else None,
+        "time": date_info["time"] if date_info else None,
+        "datetime": date_info["datetime"].isoformat() if date_info else None,
+        **session_info,
+        "laps": [],
+        "best_lap_time": None,
+        "best_lap_time_formatted": None,
+        "total_laps": 0,
+        "session_duration_seconds": session_duration_seconds,
+        "session_duration_formatted": format_duration(session_duration_seconds),
+        "estimated": True,  # Flag that this is an estimate
+    }
+
+
 def process_ibt_file(file_path: Path) -> dict:
     """Process a single IBT file and extract lap data."""
     filename = file_path.name
     date_info = parse_date_from_filename(filename)
 
-    # Check file size
+    # Check file size - for large files, just estimate duration
     file_size = file_path.stat().st_size
     if file_size > MAX_FILE_SIZE:
-        raise ValueError(f"File size ({file_size}) is greater than 2 GiB")
+        return estimate_large_file_duration(file_path)
 
     with open(file_path, "rb") as f:
         data = f.read()
@@ -163,6 +209,13 @@ def process_ibt_file(file_path: Path) -> dict:
     header = parse_ibt_header(data)
     session_info = extract_session_info(data, header["session_info_offset"], header["session_info_len"])
     variables = parse_var_headers(data, header["num_vars"], header["var_header_offset"])
+
+    # Calculate session duration from telemetry samples
+    buf_offset = header["buf_offset"]
+    buf_len = header["buf_len"]
+    tick_rate = header["tick_rate"]
+    total_samples = (len(data) - buf_offset) // buf_len
+    session_duration_seconds = total_samples / tick_rate if tick_rate > 0 else 0
 
     # Find lap variables
     var_map = {v["name"]: v for v in variables}
@@ -179,12 +232,10 @@ def process_ibt_file(file_path: Path) -> dict:
             "laps": [],
             "best_lap_time": None,
             "total_laps": 0,
+            "session_duration_seconds": session_duration_seconds,
+            "session_duration_formatted": format_duration(session_duration_seconds),
             "error": "Missing lap variables",
         }
-
-    buf_offset = header["buf_offset"]
-    buf_len = header["buf_len"]
-    total_samples = (len(data) - buf_offset) // buf_len
 
     # Extract lap times
     laps = []
@@ -229,6 +280,8 @@ def process_ibt_file(file_path: Path) -> dict:
         "best_lap_time": best_time,
         "best_lap_time_formatted": format_lap_time(best_time),
         "total_laps": len(laps),
+        "session_duration_seconds": session_duration_seconds,
+        "session_duration_formatted": format_duration(session_duration_seconds),
     }
 
 
@@ -268,17 +321,16 @@ def main():
     # Group by date AND car for daily stats
     by_date_and_car: dict[str, dict] = {}
     car_stats: dict[str, dict] = {}
-    wet_sessions_skipped = 0
+    wet_sessions_count = 0
     outlier_laps_filtered = 0
 
     for s in sessions:
         if "error" in s or not s.get("date") or not s.get("car"):
             continue
 
-        # Skip wet sessions if configured
-        if EXCLUDE_WET_SESSIONS and s.get("is_wet"):
-            wet_sessions_skipped += 1
-            continue
+        is_wet = s.get("is_wet", False)
+        if is_wet:
+            wet_sessions_count += 1
 
         key = f"{s['date']}|{s['car']}"
 
@@ -293,21 +345,26 @@ def main():
                 "best_time": float("inf"),
                 "best_time_formatted": None,
                 "track": s["track"],
+                "session_time_seconds": 0,
             }
 
         entry = by_date_and_car[key]
         entry["sessions"] += 1
-        entry["total_laps"] += s["total_laps"]
+        entry["session_time_seconds"] += s.get("session_duration_seconds", 0)
 
-        # Collect lap times
-        for lap in s.get("laps", []):
-            time_sec = lap["time_seconds"]
-            if 0 < time_sec < 600:
-                entry["all_lap_times"].append(time_sec)
+        # Only include lap data from dry sessions
+        if not is_wet:
+            entry["total_laps"] += s["total_laps"]
 
-        if s["best_lap_time"] and s["best_lap_time"] < entry["best_time"]:
-            entry["best_time"] = s["best_lap_time"]
-            entry["best_time_formatted"] = s["best_lap_time_formatted"]
+            # Collect lap times
+            for lap in s.get("laps", []):
+                time_sec = lap["time_seconds"]
+                if 0 < time_sec < 600:
+                    entry["all_lap_times"].append(time_sec)
+
+            if s["best_lap_time"] and s["best_lap_time"] < entry["best_time"]:
+                entry["best_time"] = s["best_lap_time"]
+                entry["best_time_formatted"] = s["best_lap_time_formatted"]
 
         # Track overall car stats
         car = s["car"]
@@ -319,20 +376,25 @@ def main():
                 "all_lap_times": [],
                 "best_time": float("inf"),
                 "best_time_formatted": None,
+                "session_time_seconds": 0,
             }
 
         car_entry = car_stats[car]
         car_entry["total_sessions"] += 1
-        car_entry["total_laps"] += s["total_laps"]
+        car_entry["session_time_seconds"] += s.get("session_duration_seconds", 0)
 
-        for lap in s.get("laps", []):
-            time_sec = lap["time_seconds"]
-            if 0 < time_sec < 600:
-                car_entry["all_lap_times"].append(time_sec)
+        # Only include lap data from dry sessions
+        if not is_wet:
+            car_entry["total_laps"] += s["total_laps"]
 
-        if s["best_lap_time"] and s["best_lap_time"] < car_entry["best_time"]:
-            car_entry["best_time"] = s["best_lap_time"]
-            car_entry["best_time_formatted"] = s["best_lap_time_formatted"]
+            for lap in s.get("laps", []):
+                time_sec = lap["time_seconds"]
+                if 0 < time_sec < 600:
+                    car_entry["all_lap_times"].append(time_sec)
+
+            if s["best_lap_time"] and s["best_lap_time"] < car_entry["best_time"]:
+                car_entry["best_time"] = s["best_lap_time"]
+                car_entry["best_time_formatted"] = s["best_lap_time_formatted"]
 
     # Calculate consistency stats for each date+car combo
     for entry in by_date_and_car.values():
@@ -367,6 +429,9 @@ def main():
         if entry["best_time"] == float("inf"):
             entry["best_time"] = None
 
+        # Add formatted session time
+        entry["session_time_formatted"] = format_duration(entry["session_time_seconds"])
+
         del entry["all_lap_times"]
 
     # Calculate consistency stats for each car
@@ -390,6 +455,9 @@ def main():
         if entry["best_time"] == float("inf"):
             entry["best_time"] = None
 
+        # Add formatted session time
+        entry["session_time_formatted"] = format_duration(entry["session_time_seconds"])
+
         del entry["all_lap_times"]
 
     # Sort daily bests by date, then car
@@ -399,20 +467,25 @@ def main():
     car_stats_list = sorted(car_stats.values(), key=lambda x: x["total_sessions"], reverse=True)
 
     print("\n--- Filtering Stats ---")
-    print(f"Wet sessions skipped: {wet_sessions_skipped}")
+    print(f"Wet sessions: {wet_sessions_count} (time counted, lap data excluded)")
     print(f"Outlier laps filtered: {outlier_laps_filtered} (>{OUTLIER_THRESHOLD * 100:.0f}% slower than best)")
+
+    # Calculate total time
+    total_session_time = sum(s.get("session_duration_seconds", 0) for s in sessions if "error" not in s)
 
     print("\n--- Car Statistics ---")
     for c in car_stats_list:
         consistency = f"{c['consistency_score']}%" if c["consistency_score"] else "N/A"
-        print(f"{c['car']}: {c['best_time_formatted']} best, median {c['median_time_formatted']}, {consistency} consistency, {c['total_laps_clean']}/{c['total_laps_raw']} laps")
+        print(f"{c['car']}: {c['best_time_formatted']} best, median {c['median_time_formatted']}, {consistency} consistency, {c['total_laps_clean']}/{c['total_laps_raw']} laps, {c['session_time_formatted']} track time")
 
     print("\n--- Daily Stats (by car) ---")
     for d in daily_bests:
         consistency = f"{d['consistency_score']}%" if d["consistency_score"] else "N/A"
         range_str = d["range_formatted"] or "N/A"
         filtered = f" [{d['outliers_filtered']} outliers]" if d["outliers_filtered"] > 0 else ""
-        print(f"{d['date']} [{d['car']}]: Best {d['best_time_formatted']}, Median {d['median_time_formatted']}, Range {range_str}, Consistency {consistency} ({d['total_laps_clean']} laps){filtered}")
+        print(f"{d['date']} [{d['car']}]: Best {d['best_time_formatted']}, {d['session_time_formatted']} on track, {d['total_laps_clean']} laps, {consistency} consistency{filtered}")
+
+    print(f"\n--- Total Track Time: {format_duration(total_session_time)} ---")
 
     # Convert keys for JSON (camelCase for JS compatibility)
     def to_camel_case(data):
@@ -431,6 +504,8 @@ def main():
         "generated": datetime.now().isoformat(),
         "totalSessions": len(sessions),
         "totalLaps": total_laps,
+        "totalTrackTimeSeconds": total_session_time,
+        "totalTrackTimeFormatted": format_duration(total_session_time),
         "bestOverallTime": best_time_final,
         "bestOverallTimeFormatted": format_lap_time(best_time_final),
         "carStats": to_camel_case(car_stats_list),
@@ -450,6 +525,8 @@ def main():
         "trackShort": "Monza Full",
         "totalSessions": len(sessions),
         "totalLaps": total_laps,
+        "totalTrackTimeSeconds": total_session_time,
+        "totalTrackTimeFormatted": format_duration(total_session_time),
         "bestOverallTime": best_time_final,
         "bestOverallTimeFormatted": format_lap_time(best_time_final),
         "carStats": to_camel_case(car_stats_list),
