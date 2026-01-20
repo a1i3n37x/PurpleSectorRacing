@@ -36,6 +36,36 @@ interface CarStat {
   sessionTimeFormatted: string;
 }
 
+interface PurpleLap {
+  file: string;
+  date: string;
+  track: string;
+  car: string;
+  lap: number;
+  sectorTimes: number[];
+  lapTime: number;
+  lapTimeFormatted: string;
+  missedSector?: number;
+  purpleSectors?: number[];
+}
+
+interface BestSectors {
+  track: string;
+  car: string;
+  sectors: number[];
+  sectorsFormatted: string[];
+  theoreticalBest: number;
+  theoreticalBestFormatted: string;
+}
+
+interface PurpleSectorData {
+  allPurpleLaps: PurpleLap[];
+  almostPurpleLaps: PurpleLap[];
+  bestSectorsByCar: Record<string, BestSectors>;
+  totalAllPurple: number;
+  totalAlmostPurple: number;
+}
+
 // Format date for display
 function formatDate(dateStr: string) {
   const date = new Date(dateStr + 'T00:00:00');
@@ -72,37 +102,43 @@ function getConsistencyColor(score: number | null): string {
   return 'text-[var(--accent-red)]';
 }
 
-// Group daily bests by car
-function groupByCar(dailyBests: DailyBest[]): Record<string, DailyBest[]> {
-  const grouped: Record<string, DailyBest[]> = {};
+// Group daily bests by car, then by track
+function groupByCarAndTrack(dailyBests: DailyBest[]): Record<string, Record<string, DailyBest[]>> {
+  const grouped: Record<string, Record<string, DailyBest[]>> = {};
   dailyBests.forEach(day => {
     if (!grouped[day.car]) {
-      grouped[day.car] = [];
+      grouped[day.car] = {};
     }
-    grouped[day.car].push(day);
+    if (!grouped[day.car][day.track]) {
+      grouped[day.car][day.track] = [];
+    }
+    grouped[day.car][day.track].push(day);
   });
-  // Sort each car's entries by date
-  Object.values(grouped).forEach(entries => {
-    entries.sort((a, b) => a.date.localeCompare(b.date));
+  // Sort each track's entries by date
+  Object.values(grouped).forEach(tracks => {
+    Object.values(tracks).forEach(entries => {
+      entries.sort((a, b) => a.date.localeCompare(b.date));
+    });
   });
   return grouped;
 }
 
 export default function RacingLogPage() {
-  const { dailyBests, totalSessions, totalLaps, track, carStats, totalTrackTimeFormatted } = telemetryData as {
+  const { dailyBests, totalSessions, totalLaps, carStats, totalTrackTimeFormatted, purpleSectors } = telemetryData as {
     dailyBests: DailyBest[];
     totalSessions: number;
     totalLaps: number;
-    track: string;
     carStats: CarStat[];
     totalTrackTimeFormatted: string;
+    purpleSectors?: PurpleSectorData;
   };
 
-  // Group daily bests by car
-  const groupedByCar = groupByCar(dailyBests);
+  // Group daily bests by car, then by track
+  const groupedByCarAndTrack = groupByCarAndTrack(dailyBests);
 
-  // Get unique days tracked (across all cars)
+  // Get unique days and tracks tracked
   const uniqueDays = new Set(dailyBests.map(d => d.date)).size;
+  const uniqueTracks = new Set(dailyBests.map(d => d.track)).size;
 
   return (
     <div className="pt-24">
@@ -133,7 +169,7 @@ export default function RacingLogPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
               <div className="card p-4 text-center">
                 <div className="text-2xl font-bold text-[var(--purple-glow)]">{totalTrackTimeFormatted}</div>
                 <div className="text-sm text-[var(--foreground-muted)]">Track Time</div>
@@ -144,45 +180,22 @@ export default function RacingLogPage() {
               </div>
               <div className="card p-4 text-center">
                 <div className="text-2xl font-bold text-[var(--purple-glow)]">{totalLaps}</div>
-                <div className="text-sm text-[var(--foreground-muted)]">Laps Recorded</div>
+                <div className="text-sm text-[var(--foreground-muted)]">Laps</div>
+              </div>
+              <div className="card p-4 text-center">
+                <div className="text-2xl font-bold text-white">{uniqueTracks}</div>
+                <div className="text-sm text-[var(--foreground-muted)]">Tracks</div>
               </div>
               <div className="card p-4 text-center">
                 <div className="text-2xl font-bold text-white">{uniqueDays}</div>
-                <div className="text-sm text-[var(--foreground-muted)]">Days Tracked</div>
+                <div className="text-sm text-[var(--foreground-muted)]">Days</div>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Current Focus */}
-      <section className="py-12">
-        <div className="max-w-4xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-xl font-semibold text-white mb-6">Current Focus</h2>
-            <div className="card p-5">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <h3 className="font-medium text-white text-lg">{track}</h3>
-                  <p className="text-sm text-[var(--foreground-muted)]">Super Formula Lights 324</p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="px-3 py-1 rounded bg-[var(--purple-primary)]/20 text-[var(--purple-glow)] text-sm">
-                    Active
-                  </span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Car Cards with Daily Best Lap Times */}
+      {/* Car Cards with Daily Best Lap Times by Track */}
       <section className="py-12 bg-[var(--background-secondary)]">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
@@ -194,7 +207,7 @@ export default function RacingLogPage() {
             <h2 className="text-xl font-semibold text-white mb-6">Lap Times by Car</h2>
             <div className="space-y-8">
               {carStats?.map((carStat) => {
-                const carDailyBests = groupedByCar[carStat.car] || [];
+                const carTracks = groupedByCarAndTrack[carStat.car] || {};
 
                 return (
                   <div key={carStat.car} className="card p-6">
@@ -210,7 +223,7 @@ export default function RacingLogPage() {
                         <div className="text-right">
                           <div className="text-xs text-[var(--foreground-muted)]">Best</div>
                           <div className="font-mono text-base font-bold text-[var(--accent-green)]">
-                            {carStat.bestTimeFormatted}
+                            {carStat.bestTimeFormatted || 'N/A'}
                           </div>
                         </div>
                         <div className="text-right">
@@ -228,92 +241,107 @@ export default function RacingLogPage() {
                       </div>
                     </div>
 
-                    {/* Daily Bests for this car */}
-                    <div className="space-y-3">
-                      {carDailyBests.map((day, index) => {
-                        const prevDay = index > 0 ? carDailyBests[index - 1] : null;
-                        const bestDelta = prevDay ? calculateDelta(day.bestTime, prevDay.bestTime) : null;
-                        const medianDelta = prevDay && day.medianTime && prevDay.medianTime
-                          ? calculateDelta(day.medianTime, prevDay.medianTime)
-                          : null;
-                        const consistencyDelta = calculateConsistencyDelta(day.consistencyScore, prevDay?.consistencyScore ?? null);
-                        const isBestImprovement = bestDelta && bestDelta.startsWith('-');
-                        const isMedianImprovement = medianDelta && medianDelta.startsWith('-');
-                        const isConsistencyImprovement = consistencyDelta && consistencyDelta.startsWith('+');
-                        const isPersonalBest = day.bestTime === carStat.bestTime;
-
-                        return (
-                          <div
-                            key={day.date}
-                            className={`p-4 rounded-lg ${isPersonalBest ? 'bg-[var(--accent-green)]/10 border border-[var(--accent-green)]/30' : 'bg-[var(--background-primary)]'}`}
-                          >
-                            {/* Date and lap count header */}
-                            <div className="flex items-center justify-between mb-3">
-                              <div className="text-sm font-medium text-white">{formatDate(day.date)}</div>
-                              <div className="text-xs text-[var(--foreground-muted)]">
-                                {day.sessionTimeFormatted} · {day.sessions} sessions · {day.totalLaps} laps
-                              </div>
-                            </div>
-
-                            {/* Stats grid */}
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                              {/* Best Time */}
-                              <div>
-                                <div className="text-xs text-[var(--foreground-muted)] mb-1">Best</div>
-                                <div className="flex items-center gap-1.5">
-                                  <span className={`font-mono text-sm font-semibold ${isPersonalBest ? 'text-[var(--accent-green)]' : 'text-white'}`}>
-                                    {day.bestTimeFormatted}
-                                  </span>
-                                  {isPersonalBest && (
-                                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--accent-green)]/20 text-[var(--accent-green)]">
-                                      PB
-                                    </span>
-                                  )}
-                                </div>
-                                {bestDelta && (
-                                  <div className={`text-xs font-mono mt-0.5 ${isBestImprovement ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-                                    {bestDelta}
-                                  </div>
-                                )}
-                              </div>
-
-                              {/* Median Time */}
-                              <div>
-                                <div className="text-xs text-[var(--foreground-muted)] mb-1">Median</div>
-                                <div className="font-mono text-sm text-white">
-                                  {day.medianTimeFormatted || 'N/A'}
-                                </div>
-                                {medianDelta && (
-                                  <div className={`text-xs font-mono mt-0.5 ${isMedianImprovement ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-                                    {medianDelta}
-                                  </div>
-                                )}
-                              </div>
-
-                              {/* Range */}
-                              <div>
-                                <div className="text-xs text-[var(--foreground-muted)] mb-1">Range</div>
-                                <div className="font-mono text-sm text-white">
-                                  {day.rangeFormatted || 'N/A'}
-                                </div>
-                              </div>
-
-                              {/* Consistency */}
-                              <div>
-                                <div className="text-xs text-[var(--foreground-muted)] mb-1">Consistency</div>
-                                <div className={`font-mono text-sm font-semibold ${getConsistencyColor(day.consistencyScore)}`}>
-                                  {day.consistencyScore !== null ? `${day.consistencyScore}%` : 'N/A'}
-                                </div>
-                                {consistencyDelta && (
-                                  <div className={`text-xs font-mono mt-0.5 ${isConsistencyImprovement ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
-                                    {consistencyDelta}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
+                    {/* Tracks within this car */}
+                    <div className="space-y-6">
+                      {Object.entries(carTracks).map(([trackName, trackDays]) => (
+                        <div key={trackName}>
+                          {/* Track Header */}
+                          <div className="flex items-center gap-2 mb-3">
+                            <h4 className="text-sm font-medium text-[var(--purple-glow)]">{trackName}</h4>
+                            <span className="text-xs text-[var(--foreground-muted)]">
+                              ({trackDays.length} day{trackDays.length !== 1 ? 's' : ''})
+                            </span>
                           </div>
-                        );
-                      })}
+
+                          {/* Daily Bests for this track */}
+                          <div className="space-y-3">
+                            {trackDays.map((day, index) => {
+                              const prevDay = index > 0 ? trackDays[index - 1] : null;
+                              const bestDelta = prevDay && day.bestTime && prevDay.bestTime ? calculateDelta(day.bestTime, prevDay.bestTime) : null;
+                              const medianDelta = prevDay && day.medianTime && prevDay.medianTime
+                                ? calculateDelta(day.medianTime, prevDay.medianTime)
+                                : null;
+                              const consistencyDelta = calculateConsistencyDelta(day.consistencyScore, prevDay?.consistencyScore ?? null);
+                              const isBestImprovement = bestDelta && bestDelta.startsWith('-');
+                              const isMedianImprovement = medianDelta && medianDelta.startsWith('-');
+                              const isConsistencyImprovement = consistencyDelta && consistencyDelta.startsWith('+');
+                              const isPersonalBest = day.bestTime === carStat.bestTime;
+
+                              return (
+                                <div
+                                  key={day.date}
+                                  className={`p-4 rounded-lg ${isPersonalBest ? 'bg-[var(--accent-green)]/10 border border-[var(--accent-green)]/30' : 'bg-[var(--background-primary)]'}`}
+                                >
+                                  {/* Date and lap count header */}
+                                  <div className="flex items-center justify-between mb-3">
+                                    <div className="text-sm font-medium text-white">{formatDate(day.date)}</div>
+                                    <div className="text-xs text-[var(--foreground-muted)]">
+                                      {day.sessionTimeFormatted} · {day.sessions} sessions · {day.totalLaps} laps
+                                    </div>
+                                  </div>
+
+                                  {/* Stats grid */}
+                                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                    {/* Best Time */}
+                                    <div>
+                                      <div className="text-xs text-[var(--foreground-muted)] mb-1">Best</div>
+                                      <div className="flex items-center gap-1.5">
+                                        <span className={`font-mono text-sm font-semibold ${isPersonalBest ? 'text-[var(--accent-green)]' : 'text-white'}`}>
+                                          {day.bestTimeFormatted || 'N/A'}
+                                        </span>
+                                        {isPersonalBest && (
+                                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[var(--accent-green)]/20 text-[var(--accent-green)]">
+                                            PB
+                                          </span>
+                                        )}
+                                      </div>
+                                      {bestDelta && (
+                                        <div className={`text-xs font-mono mt-0.5 ${isBestImprovement ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                                          {bestDelta}
+                                        </div>
+                                      )}
+                                    </div>
+
+                                    {/* Median Time */}
+                                    <div>
+                                      <div className="text-xs text-[var(--foreground-muted)] mb-1">Median</div>
+                                      <div className="font-mono text-sm text-white">
+                                        {day.medianTimeFormatted || 'N/A'}
+                                      </div>
+                                      {medianDelta && (
+                                        <div className={`text-xs font-mono mt-0.5 ${isMedianImprovement ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                                          {medianDelta}
+                                        </div>
+                                      )}
+                                    </div>
+
+                                    {/* Range */}
+                                    <div>
+                                      <div className="text-xs text-[var(--foreground-muted)] mb-1">Range</div>
+                                      <div className="font-mono text-sm text-white">
+                                        {day.rangeFormatted || 'N/A'}
+                                      </div>
+                                    </div>
+
+                                    {/* Consistency */}
+                                    <div>
+                                      <div className="text-xs text-[var(--foreground-muted)] mb-1">Consistency</div>
+                                      <div className={`font-mono text-sm font-semibold ${getConsistencyColor(day.consistencyScore)}`}>
+                                        {day.consistencyScore !== null ? `${day.consistencyScore}%` : 'N/A'}
+                                      </div>
+                                      {consistencyDelta && (
+                                        <div className={`text-xs font-mono mt-0.5 ${isConsistencyImprovement ? 'text-[var(--accent-green)]' : 'text-[var(--accent-red)]'}`}>
+                                          {consistencyDelta}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 );
@@ -340,13 +368,8 @@ export default function RacingLogPage() {
                   lap times, track conditions, and car setup information.
                 </p>
                 <p>
-                  Current focus at Monza: learning the track, building consistency, and understanding
-                  the Super Formula Lights. The priority is completing clean laps rather than chasing
-                  lap times.
-                </p>
-                <p>
-                  As more data accumulates, this page will expand to show sector analysis, consistency
-                  metrics, and progression trends.
+                  Purple sectors indicate personal best times for each track section. An "ALL PURPLE" lap
+                  means every sector was a personal best at that moment - a perfect lap of improvements.
                 </p>
               </div>
             </div>

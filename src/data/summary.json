@@ -1,5 +1,5 @@
 {
-  "generated": "2026-01-20T03:09:46.280762",
+  "generated": "2026-01-20T03:24:27.673831",
   "track": "Autodromo Nazionale Monza",
   "trackShort": "Monza Full",
   "totalSessions": 161,
@@ -372,66 +372,76 @@
   "purpleSectors": {
     "allPurpleLaps": [
       {
+        "file": "superformulalights324_miami gp 2026-01-20 02-29-24.ibt",
+        "date": "2026-01-20",
+        "track": "Miami International Autodrome",
+        "car": "Super Formula Lights 324",
+        "lap": 2,
+        "sectorTimes": [
+          38.635066986083984,
+          43.04999923706055,
+          35.446632385253906
+        ],
+        "lapTime": 117.11329650878906,
+        "lapTimeFormatted": "1:57.113"
+      },
+      {
         "file": "superformulalights324_monza full 2026-01-07 13-10-31.ibt",
         "date": "2026-01-07",
+        "track": "Autodromo Nazionale Monza",
         "car": "Super Formula Lights 324",
-        "lap": 49,
+        "lap": 40,
         "sectorTimes": [
-          35.30739974975586,
-          16.599998474121094,
-          18.066669464111328,
-          19.449996948242188,
-          14.93170166015625
+          14.120266914367676,
+          0.0,
+          0.0,
+          0.0,
+          90.01210308074951
         ],
-        "lapTime": 104.33170318603516,
-        "lapTimeFormatted": "1:44.332"
+        "lapTime": 104.11209869384766,
+        "lapTimeFormatted": "1:44.112"
       }
     ],
-    "almostPurpleLaps": [
-      {
-        "file": "superformulalights324_monza full 2026-01-08 22-40-32.ibt",
-        "date": "2026-01-08",
-        "car": "Super Formula Lights 324",
-        "lap": 36,
-        "purpleSectors": [
-          0,
-          1,
-          2,
-          3
-        ],
-        "missedSector": 4,
-        "sectorTimes": [
-          35.24776840209961,
-          16.36666488647461,
-          17.5,
-          18.816665649414062,
-          15.263504028320312
-        ],
-        "lapTime": 103.16349792480469,
-        "lapTimeFormatted": "1:43.163"
-      }
-    ],
+    "almostPurpleLaps": [],
     "bestSectorsByCar": {
-      "Super Formula Lights 324": {
+      "Miami International Autodrome|Super Formula Lights 324": {
+        "track": "Miami International Autodrome",
+        "car": "Super Formula Lights 324",
         "sectors": [
-          35.14583206176758,
-          16.066665649414062,
-          17.38333511352539,
-          18.633331298828125,
-          14.060035705566406
+          38.635066986083984,
+          43.04999923706055,
+          35.446632385253906
         ],
         "sectorsFormatted": [
-          "35.146",
-          "16.067",
-          "17.383",
-          "18.633",
-          "14.060"
+          "38.635",
+          "43.050",
+          "35.447"
         ],
-        "theoreticalBest": 101.28919982910156,
-        "theoreticalBestFormatted": "1:41.289"
+        "theoreticalBest": 117.13169860839844,
+        "theoreticalBestFormatted": "1:57.132"
+      },
+      "Autodromo Nazionale Monza|Super Formula Lights 324": {
+        "track": "Autodromo Nazionale Monza",
+        "car": "Super Formula Lights 324",
+        "sectors": [
+          1.5080326795578003,
+          0.0,
+          0.0,
+          0.0,
+          -1724.9017333984375
+        ],
+        "sectorsFormatted": [
+          "1.508",
+          "0.000",
+          "0.000",
+          "0.000",
+          "-1724.902"
+        ],
+        "theoreticalBest": -1723.3937007188797,
+        "theoreticalBestFormatted": null
       }
     },
-    "totalAllPurple": 1,
-    "totalAlmostPurple": 1
+    "totalAllPurple": 2,
+    "totalAlmostPurple": 0
   }
 }

@@ -167,33 +167,24 @@ def extract_sector_times(data: bytes, header: dict, variables: list, sector_star
                     else:
                         sectors[j] = sorted_splits[j][1] - sorted_splits[j - 1][1]
 
-                # Validate sector times - STRICT validation:
-                # 1. Each sector must be reasonable (varies by track/sector count)
-                # 2. Lap time must be in realistic range (75-130s covers most tracks)
-                # 3. Sum of sectors MUST match actual lap time within 0.5 seconds
-                # 4. NO incidents during any sector of this lap
+                # Validate sector times:
+                # 1. LapLastLapTime must be positive (not -1 which means invalid/cut lap)
+                # 2. Sector sum must match lap time (within tolerance)
                 if len(sectors) == num_sectors:
                     times = list(sectors.values())
                     sector_sum = sum(times)
 
-                    # Accept lap times in reasonable range for formula cars
-                    actual_lap = last_lap_time if last_lap_time and 75 < last_lap_time < 130 else None
+                    # LapLastLapTime > 0 means valid lap (not cut/off-track)
+                    # LapLastLapTime = -1 means invalid lap
+                    is_valid_lap = last_lap_time is not None and last_lap_time > 0
 
-                    # Each sector must be reasonable - min varies by sector count
-                    # 3 sectors: ~25-35s each, 5 sectors: ~14-25s each
-                    min_sector = 20 if num_sectors <= 3 else 14
-                    sectors_valid = all(min_sector < t < 60 for t in times)
-                    # Total must be a realistic lap time
-                    total_valid = 75 < sector_sum < 130
-                    # Sector sum MUST match actual lap time very closely
-                    matches_lap = actual_lap is not None and abs(sector_sum - actual_lap) < 0.5
-                    # NO incidents during this lap
-                    no_incidents = len(sector_incidents) == 0
+                    # Sector sum must match lap time closely
+                    matches_lap = is_valid_lap and abs(sector_sum - last_lap_time) < 1.0
 
-                    if sectors_valid and total_valid and matches_lap and no_incidents:
+                    if matches_lap:
                         laps_sectors[prev_lap] = {
                             "sectors": sectors,
-                            "lap_time": actual_lap,
+                            "lap_time": last_lap_time,
                             "clean": True,
                         }
 
@@ -479,8 +470,8 @@ def main():
     best_overall_time = float("inf")
     best_overall_file = None
 
-    # Track sector personal bests across all sessions
-    global_best_sectors: dict[str, dict[int, float]] = {}  # key: car, value: {sector_idx: time}
+    # Track sector personal bests across all sessions - key by track+car combo
+    global_best_sectors: dict[str, dict[int, float]] = {}  # key: "track|car", value: {sector_idx: time}
     all_purple_laps = []  # Laps where ALL sectors were purple
     almost_purple_laps = []  # Laps where all but 1 sector were purple
 
@@ -500,12 +491,16 @@ def main():
             laps_with_sectors = result.get("laps_with_sectors", {})
             num_sectors = result.get("num_sectors", 0)
             car = result.get("car", "Unknown")
+            track = result.get("track", "Unknown")
             is_wet = result.get("is_wet", False)
 
+            # Key by track+car to keep sector data separate per track
+            track_car_key = f"{track}|{car}"
+
             if laps_with_sectors and num_sectors > 0 and not is_wet:
-                # Initialize car's best sectors if needed
-                if car not in global_best_sectors:
-                    global_best_sectors[car] = {i: float("inf") for i in range(num_sectors)}
+                # Initialize track+car best sectors if needed
+                if track_car_key not in global_best_sectors:
+                    global_best_sectors[track_car_key] = {i: float("inf") for i in range(num_sectors)}
 
                 # Check each lap for purple sectors
                 for lap_num in sorted(laps_with_sectors.keys()):
@@ -524,16 +519,17 @@ def main():
                             continue
 
                         # Check if this is a personal best for this sector
-                        if sector_time < global_best_sectors[car][sector_idx]:
+                        if sector_time < global_best_sectors[track_car_key][sector_idx]:
                             purple_count += 1
                             purple_sectors.append(sector_idx)
-                            global_best_sectors[car][sector_idx] = sector_time
+                            global_best_sectors[track_car_key][sector_idx] = sector_time
 
                     # Record notable laps
                     if purple_count == num_sectors:
                         all_purple_laps.append({
                             "file": file_path.name,
                             "date": result.get("date"),
+                            "track": track,
                             "car": car,
                             "lap": lap_num,
                             "sector_times": [sectors.get(i) for i in range(num_sectors)],
@@ -546,6 +542,7 @@ def main():
                         almost_purple_laps.append({
                             "file": file_path.name,
                             "date": result.get("date"),
+                            "track": track,
                             "car": car,
                             "lap": lap_num,
                             "purple_sectors": purple_sectors,
@@ -738,23 +735,25 @@ def main():
     print(f"ALL PURPLE laps: {len(all_purple_laps)}")
     for lap in all_purple_laps:
         sectors_str = " | ".join([f"{t:.3f}" for t in lap["sector_times"]])
-        print(f"  {lap['date']} - {lap['car']} Lap {lap['lap']}: [{sectors_str}] = {lap['lap_time_formatted']}")
+        track_short = lap.get("track", "Unknown")[:20]
+        print(f"  {lap['date']} @ {track_short} - {lap['car']} Lap {lap['lap']}: [{sectors_str}] = {lap['lap_time_formatted']}")
 
     print(f"\nALMOST purple laps (1 sector off): {len(almost_purple_laps)}")
     for lap in almost_purple_laps[-10:]:  # Show last 10
         sectors_str = " | ".join([f"{t:.3f}" for t in lap["sector_times"]])
         missed = lap["missed_sector"] + 1  # 1-indexed for display
-        print(f"  {lap['date']} - {lap['car']} Lap {lap['lap']}: [{sectors_str}] = {lap['lap_time_formatted']} (missed S{missed})")
+        track_short = lap.get("track", "Unknown")[:20]
+        print(f"  {lap['date']} @ {track_short} - {lap['car']} Lap {lap['lap']}: [{sectors_str}] = {lap['lap_time_formatted']} (missed S{missed})")
     if len(almost_purple_laps) > 10:
         print(f"  ... and {len(almost_purple_laps) - 10} more")
 
-    # Print current best sectors per car
-    print(f"\n--- Current Best Sectors ---")
-    for car, sectors in global_best_sectors.items():
+    # Print current best sectors per track+car
+    print(f"\n--- Current Best Sectors (by Track + Car) ---")
+    for track_car_key, sectors in global_best_sectors.items():
         if all(t < float("inf") for t in sectors.values()):
             sector_str = " | ".join([f"S{i+1}: {t:.3f}" for i, t in sectors.items()])
             theoretical_best = sum(sectors.values())
-            print(f"  {car}: [{sector_str}] = {format_lap_time(theoretical_best)} theoretical")
+            print(f"  {track_car_key}: [{sector_str}] = {format_lap_time(theoretical_best)} theoretical")
 
     # Convert keys for JSON (camelCase for JS compatibility)
     def to_camel_case(data):
@@ -772,11 +771,17 @@ def main():
             return [to_camel_case(item) for item in data]
         return data
 
-    # Prepare best sectors for JSON (convert to list format)
+    # Prepare best sectors for JSON (convert to list format, keyed by track+car)
     best_sectors_output = {}
-    for car, sectors in global_best_sectors.items():
+    for track_car_key, sectors in global_best_sectors.items():
         if all(t < float("inf") for t in sectors.values()):
-            best_sectors_output[car] = {
+            # Split track|car key
+            parts = track_car_key.split("|", 1)
+            track_name = parts[0] if len(parts) > 0 else "Unknown"
+            car_name = parts[1] if len(parts) > 1 else "Unknown"
+            best_sectors_output[track_car_key] = {
+                "track": track_name,
+                "car": car_name,
                 "sectors": [sectors[i] for i in range(len(sectors))],
                 "sectorsFormatted": [f"{sectors[i]:.3f}" for i in range(len(sectors))],
                 "theoreticalBest": sum(sectors.values()),
