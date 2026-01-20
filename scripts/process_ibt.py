@@ -85,7 +85,15 @@ def extract_session_info(data: bytes, offset: int, length: int) -> dict:
     precipitation = int(extract(r"TrackPrecipitation:\s*(\d+)") or 0)
 
     # Extract sector boundaries
-    sector_starts = [float(m.group(1)) for m in re.finditer(r"SectorStartPct:\s*([\d.]+)", yaml_text)]
+    # SectorStartPct values include 0.0 (start line) followed by sector end boundaries
+    all_sector_pcts = [float(m.group(1)) for m in re.finditer(r"SectorStartPct:\s*([\d.]+)", yaml_text)]
+
+    # Filter out 0.0 - we only need the boundaries between sectors (where each sector ends)
+    sector_boundaries = [s for s in all_sector_pcts if s > 0.01]
+
+    # Number of sectors = number of internal boundaries + 1
+    # e.g., [0.345, 0.476, 0.658, 0.853] = 4 boundaries = 5 sectors
+    num_sectors = len(sector_boundaries) + 1 if sector_boundaries else 0
 
     return {
         "track": extract(r"TrackDisplayName:\s*(.+)") or "Unknown",
@@ -95,21 +103,24 @@ def extract_session_info(data: bytes, offset: int, length: int) -> dict:
         "precipitation": precipitation,
         "skies": extract(r"TrackSkies:\s*(.+)") or "Unknown",
         "is_wet": precipitation > 0,
-        "sector_starts": sector_starts,
-        "num_sectors": len(sector_starts),
+        "sector_boundaries": sector_boundaries,
+        "num_sectors": num_sectors,
     }
 
 
-def extract_sector_times(data: bytes, header: dict, variables: list, sector_starts: list) -> list:
+def extract_sector_times(data: bytes, header: dict, variables: list, sector_boundaries: list) -> list:
     """Extract sector times for each completed lap from telemetry data.
 
     Only includes sectors where no incidents occurred (off-track, cutting, etc.)
     """
-    if not sector_starts or len(sector_starts) < 2:
+    if not sector_boundaries:
         return {}
 
-    num_sectors = len(sector_starts)
-    sector_bounds = sector_starts + [1.0]  # Add finish line
+    # sector_boundaries = internal boundaries between sectors (excludes 0.0 start line)
+    # num_sectors = boundaries + 1 (e.g., 4 boundaries = 5 sectors)
+    num_sectors = len(sector_boundaries) + 1
+    # sector_bounds = boundaries + finish line (1.0)
+    sector_bounds = sector_boundaries + [1.0]
 
     # Build variable lookup
     var_map = {v["name"]: v for v in variables}
@@ -147,17 +158,34 @@ def extract_sector_times(data: bytes, header: dict, variables: list, sector_star
 
         # Check for incident during this sample
         if has_incidents and incident_count > prev_incident_count:
-            # Find which sector we're in
+            # Find which sector we're in (sector 0 is from 0.0 to sector_bounds[0])
             current_sector = 0
-            for s_idx, bound in enumerate(sector_bounds[1:]):
+            for s_idx, bound in enumerate(sector_bounds):
                 if pct < bound:
                     current_sector = s_idx
                     break
+                current_sector = s_idx + 1
             sector_incidents[current_sector] = True
             prev_incident_count = incident_count
 
+        # Check for sector boundary crossings (before lap change check)
+        for bound in sector_bounds:
+            if bound < 1.0:
+                # Regular sector boundary crossing
+                if prev_pct < bound <= pct:
+                    split_times[bound] = lap_time
+
+        # Detect finish line crossing - happens when pct wraps from ~1.0 to ~0.0
+        # This must be captured BEFORE we save the lap's sectors
+        crossed_finish = pct < prev_pct and prev_pct > 0.9
+
         # New lap - save previous lap's sectors
         if prev_lap is not None and lap != prev_lap:
+            # If we just crossed the finish line, the lap time at the finish
+            # is effectively the complete lap time (last_lap_time)
+            if crossed_finish and last_lap_time is not None and last_lap_time > 0:
+                split_times[1.0] = last_lap_time
+
             if split_times:
                 sectors = {}
                 sorted_splits = sorted(split_times.items())
@@ -170,6 +198,7 @@ def extract_sector_times(data: bytes, header: dict, variables: list, sector_star
                 # Validate sector times:
                 # 1. LapLastLapTime must be positive (not -1 which means invalid/cut lap)
                 # 2. Sector sum must match lap time (within tolerance)
+                # 3. All sector times must be positive
                 if len(sectors) == num_sectors:
                     times = list(sectors.values())
                     sector_sum = sum(times)
@@ -178,8 +207,11 @@ def extract_sector_times(data: bytes, header: dict, variables: list, sector_star
                     # LapLastLapTime = -1 means invalid lap
                     is_valid_lap = last_lap_time is not None and last_lap_time > 0
 
+                    # All sectors must be positive
+                    all_positive = all(t > 0 for t in times)
+
                     # Sector sum must match lap time closely
-                    matches_lap = is_valid_lap and abs(sector_sum - last_lap_time) < 1.0
+                    matches_lap = is_valid_lap and all_positive and abs(sector_sum - last_lap_time) < 1.0
 
                     if matches_lap:
                         laps_sectors[prev_lap] = {
@@ -192,17 +224,6 @@ def extract_sector_times(data: bytes, header: dict, variables: list, sector_star
             sector_incidents = {}  # Reset for new lap
 
         prev_lap = lap
-
-        # Check for boundary crossings
-        for bound in sector_bounds[1:]:
-            if bound < 1.0:
-                if prev_pct < bound <= pct:
-                    split_times[bound] = lap_time
-            else:
-                # Finish line wrap-around
-                if pct < prev_pct and prev_pct > 0.9:
-                    split_times[1.0] = lap_time
-
         prev_pct = pct
 
     return laps_sectors
@@ -384,8 +405,8 @@ def process_ibt_file(file_path: Path) -> dict:
     best_time = session_best_time if session_best_time < float("inf") else None
 
     # Extract sector times for each lap
-    sector_starts = session_info.get("sector_starts", [])
-    laps_with_sectors = extract_sector_times(data, header, variables, sector_starts)
+    sector_boundaries = session_info.get("sector_boundaries", [])
+    laps_with_sectors = extract_sector_times(data, header, variables, sector_boundaries)
 
     return {
         "file_name": filename,
@@ -561,9 +582,10 @@ def main():
     print(f"Total laps recorded: {total_laps}")
     print(f"Best overall lap: {format_lap_time(best_overall_time)} ({best_overall_file})")
 
-    # Group by date AND car for daily stats
-    by_date_and_car: dict[str, dict] = {}
+    # Group by date AND car AND track for daily stats
+    by_date_car_track: dict[str, dict] = {}
     car_stats: dict[str, dict] = {}
+    track_stats: dict[str, dict] = {}  # Key: "car|track"
     wet_sessions_count = 0
     outlier_laps_filtered = 0
 
@@ -575,23 +597,26 @@ def main():
         if is_wet:
             wet_sessions_count += 1
 
-        key = f"{s['date']}|{s['car']}"
+        car = s["car"]
+        track = s.get("track", "Unknown")
+        key = f"{s['date']}|{car}|{track}"
+        car_track_key = f"{car}|{track}"
 
-        # Track per date+car
-        if key not in by_date_and_car:
-            by_date_and_car[key] = {
+        # Track per date+car+track
+        if key not in by_date_car_track:
+            by_date_car_track[key] = {
                 "date": s["date"],
-                "car": s["car"],
+                "car": car,
+                "track": track,
                 "sessions": 0,
                 "total_laps": 0,
                 "all_lap_times": [],
                 "best_time": float("inf"),
                 "best_time_formatted": None,
-                "track": s["track"],
                 "session_time_seconds": 0,
             }
 
-        entry = by_date_and_car[key]
+        entry = by_date_car_track[key]
         entry["sessions"] += 1
         entry["session_time_seconds"] += s.get("session_duration_seconds", 0)
 
@@ -609,8 +634,36 @@ def main():
                 entry["best_time"] = s["best_lap_time"]
                 entry["best_time_formatted"] = s["best_lap_time_formatted"]
 
+        # Track per car+track (for track-level stats)
+        if car_track_key not in track_stats:
+            track_stats[car_track_key] = {
+                "car": car,
+                "track": track,
+                "total_sessions": 0,
+                "total_laps": 0,
+                "all_lap_times": [],
+                "best_time": float("inf"),
+                "best_time_formatted": None,
+                "session_time_seconds": 0,
+            }
+
+        track_entry = track_stats[car_track_key]
+        track_entry["total_sessions"] += 1
+        track_entry["session_time_seconds"] += s.get("session_duration_seconds", 0)
+
+        if not is_wet:
+            track_entry["total_laps"] += s["total_laps"]
+
+            for lap in s.get("laps", []):
+                time_sec = lap["time_seconds"]
+                if 0 < time_sec < 600:
+                    track_entry["all_lap_times"].append(time_sec)
+
+            if s["best_lap_time"] and s["best_lap_time"] < track_entry["best_time"]:
+                track_entry["best_time"] = s["best_lap_time"]
+                track_entry["best_time_formatted"] = s["best_lap_time_formatted"]
+
         # Track overall car stats
-        car = s["car"]
         if car not in car_stats:
             car_stats[car] = {
                 "car": car,
@@ -639,8 +692,8 @@ def main():
                 car_entry["best_time"] = s["best_lap_time"]
                 car_entry["best_time_formatted"] = s["best_lap_time_formatted"]
 
-    # Calculate consistency stats for each date+car combo
-    for entry in by_date_and_car.values():
+    # Calculate consistency stats for each date+car+track combo
+    for entry in by_date_car_track.values():
         all_times = entry["all_lap_times"]
         best = entry["best_time"] if entry["best_time"] < float("inf") else None
         times = filter_outlier_laps(all_times, best) if best else all_times
@@ -677,7 +730,39 @@ def main():
 
         del entry["all_lap_times"]
 
-    # Calculate consistency stats for each car
+    # Calculate consistency stats for each car+track combo
+    for entry in track_stats.values():
+        all_times = entry["all_lap_times"]
+        best = entry["best_time"] if entry["best_time"] < float("inf") else None
+        times = filter_outlier_laps(all_times, best) if best else all_times
+
+        entry["total_laps_raw"] = len(all_times)
+        entry["total_laps_clean"] = len(times)
+
+        if times:
+            entry["median_time"] = statistics.median(times)
+            entry["median_time_formatted"] = format_lap_time(entry["median_time"])
+            entry["slowest_time"] = max(times)
+            entry["slowest_time_formatted"] = format_lap_time(entry["slowest_time"])
+            entry["range"] = entry["slowest_time"] - entry["best_time"] if entry["best_time"] < float("inf") else None
+            entry["range_formatted"] = f"{entry['range']:.3f}s" if entry["range"] else None
+            entry["consistency_score"] = calculate_consistency_score(times)
+        else:
+            entry["median_time"] = None
+            entry["median_time_formatted"] = None
+            entry["slowest_time"] = None
+            entry["slowest_time_formatted"] = None
+            entry["range"] = None
+            entry["range_formatted"] = None
+            entry["consistency_score"] = None
+
+        if entry["best_time"] == float("inf"):
+            entry["best_time"] = None
+
+        entry["session_time_formatted"] = format_duration(entry["session_time_seconds"])
+        del entry["all_lap_times"]
+
+    # Calculate consistency stats for each car (overall)
     for entry in car_stats.values():
         all_times = entry["all_lap_times"]
         best = entry["best_time"] if entry["best_time"] < float("inf") else None
@@ -703,8 +788,8 @@ def main():
 
         del entry["all_lap_times"]
 
-    # Sort daily bests by date, then car
-    daily_bests = sorted(by_date_and_car.values(), key=lambda x: (x["date"], x["car"]))
+    # Sort daily bests by date, then car, then track
+    daily_bests = sorted(by_date_car_track.values(), key=lambda x: (x["date"], x["car"], x["track"]))
 
     # Sort car stats by session count (most used first)
     car_stats_list = sorted(car_stats.values(), key=lambda x: x["total_sessions"], reverse=True)
@@ -788,6 +873,9 @@ def main():
                 "theoreticalBestFormatted": format_lap_time(sum(sectors.values())),
             }
 
+    # Prepare track stats list (sorted by car, then track)
+    track_stats_list = sorted(track_stats.values(), key=lambda x: (x["car"], x["track"]))
+
     # Save full telemetry data
     best_time_final = best_overall_time if best_overall_time < float("inf") else None
     output_data = {
@@ -799,6 +887,7 @@ def main():
         "bestOverallTime": best_time_final,
         "bestOverallTimeFormatted": format_lap_time(best_time_final),
         "carStats": to_camel_case(car_stats_list),
+        "trackStats": to_camel_case(track_stats_list),
         "dailyBests": to_camel_case(daily_bests),
         "sessions": to_camel_case([s for s in sessions if "error" not in s]),
         "purpleSectors": {
@@ -816,8 +905,6 @@ def main():
     # Save summary
     summary_data = {
         "generated": datetime.now().isoformat(),
-        "track": "Autodromo Nazionale Monza",
-        "trackShort": "Monza Full",
         "totalSessions": len(sessions),
         "totalLaps": total_laps,
         "totalTrackTimeSeconds": total_session_time,
@@ -825,6 +912,7 @@ def main():
         "bestOverallTime": best_time_final,
         "bestOverallTimeFormatted": format_lap_time(best_time_final),
         "carStats": to_camel_case(car_stats_list),
+        "trackStats": to_camel_case(track_stats_list),
         "dailyBests": to_camel_case(daily_bests),
         "purpleSectors": {
             "allPurpleLaps": to_camel_case(all_purple_laps),
